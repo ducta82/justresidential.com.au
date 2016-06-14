@@ -16,8 +16,16 @@
 @media(min-width: 769px){
 	.about-us{min-height: 642px;}
 	.col-lg-4.item-carousel-about{width: 26.5%;} 
-	.col-lg-8.item-carousel-about{padding: 0 18px;width: 73.5%;}	
-	
+	.col-lg-8.item-carousel-about{padding: 0 18px;width: 73.5%;}
+	.post-thumbnail{width: 35%;margin-right: 2%;}
+	.box-content-post{width: 63%;}
+	.box-posts-page{
+	width: 71.666666%;
+    margin-right: 5%;
+	}
+.widget-right{
+	width: 23.333333%;
+	}
 }
 @media(max-width:1199px){
 	
@@ -77,6 +85,7 @@
 	ul.social-icon{margin-bottom: 102px;}
 	h2.adv-text{margin-top: 10px;font-size: 36px;}
 	h2.adv-text strong{font-size: 36px;}
+	h1.site-name{margin: 0;}
 }
 @media(max-width: 736px){
 	.navbar-default .navbar-toggle:focus, .navbar-default .navbar-toggle:hover{
@@ -110,7 +119,6 @@
 		-o-transition: 0.5s ease-in-out;
 		transition: 1s ease-in-out;
 	}
-	h1.site-name{margin: 0;}
 	.container-fluid > .navbar-collapse, .container-fluid > .navbar-header, .container > .navbar-collapse, .container > .navbar-header{margin: 0;}
 	#myCarousel .carousel-caption{bottom: 50px;}
 	.item-ourservices{width: 50%;max-height: 280px;}
