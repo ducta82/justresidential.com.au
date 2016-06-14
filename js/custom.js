@@ -11,4 +11,10 @@ $( document ).ready(function() {
 			$('.primary-nav').addClass('primary-nav-open');
 		}
 	});
+	$('.content-page-faq .tittle-post').click(function(){
+		$('.content-page-faq .content-post').toggle('slow',function(){
+			console.log('ok');
+		});
+		$('.content-page-faq .item-post').toggleClass('special');
+	});
 });

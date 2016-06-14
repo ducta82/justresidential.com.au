@@ -1103,6 +1103,7 @@ ul.paging .page-number.active{
     border-radius: 0;
     text-transform: uppercase;
     padding: 10px 31px;
+  	float: right;
 }
 .input-group{
 	width: 100%;    
@@ -1116,4 +1117,38 @@ ul.paging .page-number.active{
 .form-contact input{
 	width: 80% !important;
 	float: left !important;
+}
+/*css FQA*/
+.content-page-faq .tittle-post {
+	color: #666666;
+	font-family: GothamHTF_Bold;
+	font-size: 18px;
+}
+
+.close{
+	height: 80px;
+  -webkit-transition: all 1s ease-in-out;
+  -moz-transition: all 1s ease-in-out;
+  -o-transition: all 1s ease-in-out;
+  transition: all 1s ease-in-out;
+}
+.open{
+	height: 100%;  
+	-webkit-transition: all 1s ease-in-out;
+	  -moz-transition: all 1s ease-in-out;
+	  -o-transition: all 1s ease-in-out;
+	  transition: all 1s ease-in-out;
+}
+.content-page-faq .item-post:before{
+	font-family: 'Glyphicons Halflings';
+    content: "\e602";
+    display: inline-block;
+    float: left;
+    margin-right: 20px;
+}
+.content-page-faq .item-post.special:before {
+    content:"bar";
+}
+.content-page-faq .content-post{
+	display: none;
 }
