@@ -21,6 +21,7 @@
 		<script src="js/jquery-1.12.4.min.js"></script>
 		<!-- Bootstrap JavaScript -->
 		<script src="js/bootstrap.min.js"></script>
+		<script src="js/custom.js"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
 	</head>
 	<body>
@@ -33,91 +34,93 @@
 							<div class="navbar-header">
 								<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
 									<span class="sr-only">Toggle navigation</span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
-									<span class="icon-bar"></span>
+									<img src="images/icon-menu.png" class="img-responsive" alt="Image">
 								</button>
-								<h1 class="site-name"><strong>just</strong>residential</h1>
+								<h1 class="site-name"><a href="javascript:void(0)"><strong>just</strong>residential</a></h1>
 							</div>
 					
 							<!-- Collect the nav links, forms, and other content for toggling -->
-							<div class="collapse navbar-collapse navbar-ex1-collapse">
-								<ul class="nav navbar-nav navbar-right">
-									<li><a href="#">home</a></li>
-									<li><a href="#">tenant check</a></li>
-									<li><a href="#">let only</a></li>
-									<li><a href="#">property management</a></li>
-									<li><a href="#">sales</a></li>
-									<li><a href="#">blog</a></li>
+							<div class="navbar-collapse primary-nav">
+								<ul id="primary-menu" class="nav navbar-nav navbar-right">
+									<li><a href="javascript:void(0)">home</a></li>
+									<li><a href="javascript:void(0)">tenant check</a></li>
+									<li><a href="javascript:void(0)">let only</a></li>
+									<li><a href="javascript:void(0)">property management</a></li>
+									<li><a href="javascript:void(0)">sales</a></li>
+									<li><a href="javascript:void(0)">blog</a></li>
 									<li class="dropdown">
-										<a href="#" class="dropdown-toggle" data-toggle="dropdown">forms</a>
+										<a href="javascript:void(0)" class="dropdown-toggle" data-toggle="dropdown">forms</a>
 										<ul class="dropdown-menu">
-											<li><a href="#">Action</a></li>
-											<li><a href="#">Another action</a></li>
-											<li><a href="#">Something else here</a></li>
-											<li><a href="#">Separated link</a></li>
+											<li><a href="javascript:void(0)">Action</a></li>
+											<li><a href="javascript:void(0)">Another action</a></li>
+											<li><a href="javascript:void(0)">Something else here</a></li>
+											<li><a href="javascript:void(0)">Separated link</a></li>
 										</ul>
 									</li>
-									<li><a href="#">contact</a></li>
+									<li><a href="javascript:void(0)">contact</a></li>
 								</ul>
 							</div><!-- /.navbar-collapse -->
 						</div>
 					</nav><!--end nav menu-->
-					<div id="myCarousel" class="carousel slide" data-ride="carousel">
-						  <!-- Indicators -->
-					  	<ol class="carousel-indicators">
-						    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-						    <li data-target="#myCarousel" data-slide-to="1"></li>
-						    <li data-target="#myCarousel" data-slide-to="2"></li>
-						    <li data-target="#myCarousel" data-slide-to="3"></li>
-					  	</ol>
-
-					  <!-- Wrapper for slides -->
-					  	<div class="carousel-inner">
-						    <div class="item active">
-							    <div class="carousel-caption">
-							        <h3>tenant check</h3>
-							        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-							        <p class="price">only $19.95</p>
-						      	</div>
-						    </div>
-
-						    <div class="item">
-						      	<div class="carousel-caption">
-						        	<h3>tenant check</h3>
-							        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-							        <p class="price">only $19.95</p>
-						      	</div>
-						    </div>
-
-						    <div class="item">
-						      	<div class="carousel-caption">
-						        	<h3>tenant check</h3>
-							        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-							        <p class="price">only $19.95</p>
-						      	</div>
-						    </div>
-
-						    <div class="item">
-						      	<div class="carousel-caption">
-						        	<h3>tenant check</h3>
-							        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-							        <p class="price">only $19.95</p>
-						      	</div>
-						    </div>
-					  	</div>
-
-						  <!-- Left and right controls -->
-					  	<a class="left" href="#myCarousel" data-slide="prev">
-						    <i class="fa fa-angle-left" aria-hidden="true"></i>
-						    <span class="sr-only">Previous</span>
-					  	</a>
-					  	<a class="right" href="#myCarousel" data-slide="next">
-					    <i class="fa fa-angle-right" aria-hidden="true"></i>
-					    	<span class="sr-only">Next</span>
-					  	</a>
-					</div><!-- end mycarousel-->
 				</div><!--end content-->
+				<div id="myCarousel" class="carousel slide" data-ride="carousel">
+					  <!-- Indicators -->
+				  	<ol class="carousel-indicators">
+					    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+					    <li data-target="#myCarousel" data-slide-to="1"></li>
+					    <li data-target="#myCarousel" data-slide-to="2"></li>
+					    <li data-target="#myCarousel" data-slide-to="3"></li>
+				  	</ol>
+
+				  <!-- Wrapper for slides -->
+				  	<div class="carousel-inner">
+					    <div class="item active">
+					    	<img src="images/banner-home.png" class="img-responsive" alt="Image">
+						    <div class="carousel-caption">
+						        <h3>tenant check</h3>
+						        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
+						        <p class="price"><a href="javascript:void(0)">only $19.95</a></p>
+					      	</div>
+					    </div>
+
+					    <div class="item">
+					    	<img src="images/banner-home.png" class="img-responsive" alt="Image">
+					      	<div class="carousel-caption">
+					        	<h3>tenant check</h3>
+						        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
+						        <p class="price"><a href="javascript:void(0)">only $21.95</a></p>
+					      	</div>
+					    </div>
+
+					    <div class="item">
+					    	<img src="images/banner-home.png" class="img-responsive" alt="Image">
+					      	<div class="carousel-caption">
+					        	<h3>tenant check</h3>
+						        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
+						        <p class="price"><a href="javascript:void(0)">only $23.95</a></p>
+					      	</div>
+					    </div>
+
+					    <div class="item">
+					    	<img src="images/banner-home.png" class="img-responsive" alt="Image">
+					      	<div class="carousel-caption">
+					        	<h3>tenant check</h3>
+						        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
+						        <p class="price"><a href="javascript:void(0)">only $25.95</a></p>
+					      	</div>
+					    </div>
+				  	</div>
+
+					  <!-- Left and right controls -->
+				  	<a class="left" href="#myCarousel" data-slide="prev">
+					    <i class="fa fa-angle-left"></i>
+					    <span class="sr-only">Previous</span>
+				  	</a>
+				  	<a class="right" href="#myCarousel" data-slide="next">
+				    <i class="fa fa-angle-right"></i>
+				    	<span class="sr-only">Next</span>
+				  	</a>
+				</div><!-- end mycarousel-->
 			</div><!-- end header-->
 			<div class="our-services">
 				<div class="container content">
@@ -127,36 +130,36 @@
 						<p>Pellentesque habitant morbi tristiquesenectus et netus et malesuada fames ac turpis egestas</p>
 					</div>
 					<div class="row">
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item-ourservices">
+						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 item-ourservices">
 								<img src="images/icon-ourservices-1.png" class="img-responsive" alt="Image">
 							<div class="box-content">
 								<h3>tenant check</h3>
 								<p>Make industry standard checks on potential tenants before renting out your investment property. Ideal for self-managing landlords and share accommodation providers</p>
-								<a href="javascrip:void(0)">read more</a>
+								<a href="javascript:void(0)">read more</a>
 							</div>	
 						</div>
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item-ourservices">
+						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 item-ourservices">
 							<img src="images/icon-ourservices-2.png" class="img-responsive" alt="Image">
 							<div class="box-content">
 								<h3>let only</h3>
 								<p>If you are looking to secure a great tenant, look no further. Our tenant finder service is ideal for those managing their own residential property investments</p>
-								<a href="javascrip:void(0)">read more</a>
+								<a href="javascript:void(0)">read more</a>
 							</div>	
 						</div>
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item-ourservices">
+						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 item-ourservices">
 							<img src="images/icon-ourservices-3.png" class="img-responsive" alt="Image">
 							<div class="box-content">
 								<h3>property management</h3>
 								<p>Just Residential provides property investors with a professional, reliable, yet personalised property management solution. All at a flat rate of 6.6% including GST</p>
-								<a href="javascrip:void(0)">read more</a>
+								<a href="javascript:void(0)">read more</a>
 							</div>	
 						</div>
-						<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item-ourservices">
+						<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 item-ourservices">
 							<img src="images/icon-ourservices-4.png" class="img-responsive" alt="Image">
 							<div class="box-content">
 								<h3>sale</h3>
 								<p>Just Residential provides property investors with a professional, reliable, yet personalised property management solution. All at a flat rate of 6.6% including GST</p>
-								<a href="javascrip:void(0)">read more</a>
+								<a href="javascript:void(0)">read more</a>
 							</div>
 						</div>
 					</div><!-- end row-->
@@ -197,31 +200,35 @@
 						<p>Pellentesque habitant morbi tristiquesenectus et netus et malesuada fames ac turpis egestas</p>
 					</div>
 					<div class="box-item-features">
-						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 item-features">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 item-features">
 							<img src="images/team-icon-1.png" class="img-responsive" alt="Image">
 							<div class="content-item-features">
-								<h3>join us</h3>
+								<h3><a href="javascript:void(0)">join us</a></h3>
 								<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
 							</div>
+							<div class="hover-item-features"><div class="boder-features"></div></div>
 						</div>
-						<div class="col-xs-12 col-sm-12 col-md-6 col-lg-6 item-features">
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 item-features">
 							<img src="images/team-icon-2.png" class="img-responsive" alt="Image">
 							<div class="content-item-features">
-								<h3>promotion</h3>
+								<h3><a href="javascript:void(0)">promotion</a></h3>
 								<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
 							</div>
+							<div class="hover-item-features"><div class="boder-features"></div></div>
 						</div>
 					</div>	<!--end box-item-features-->
 				</div><!--end content-->
 			</div><!--end features-->
 			<div class="adv">
-				<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10">
-				 	<h2 class="adv-text"><strong>3 months</strong> moneyback guarantee!</h2>
-				 	<p>We will return you the money if you don’t like the service for 3 months</p>
-				</div>
-				<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2">
-					<a href="javascrip:void(0)">property managenent</a>
-				</div>
+				<div class="container content">
+					<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 item-adv">
+					 	<h2 class="adv-text"><strong>3 months</strong> moneyback guarantee!</h2>
+					 	<p>We will return you the money if you don’t like the service for 3 months</p>
+					</div>
+					<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3 item-adv">
+						<a href="javascript:void(0)">property managenent</a>
+					</div>
+				</div><!--end content-->
 			</div><!-- end adv-->
 			<div class="blog">
 				<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 head-archive">
@@ -230,31 +237,35 @@
 					<p>Pellentesque habitant morbi tristiquesenectus et netus et malesuada fames ac turpis egestas</p>
 				</div>
 				<div class="box-blog">
-					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item-blog">
+					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 item-blog">
 						<img src="images/img-blog-1.png" class="img-responsive" alt="Image">
 						<div class="info-item-blog">
-							<h3>Pellentesque habitant morbi tristique senectus</h3>
+							<h3><a href="javascript:void(0)">Pellentesque habitant morbi tristique senectus</a></h3>
 							<p>19th jan 2016</p>
+							<div class="blog-arrow up"></div>
 						</div>
 					</div>
-					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item-blog">
+					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 item-blog">
 						<div class="info-item-blog">
-							<h3>Pellentesque habitant morbi tristique senectus</h3>
+							<h3><a href="javascript:void(0)">Pellentesque habitant morbi tristique senectus</a></h3>
 							<p>19th jan 2016</p>
+							<div class="blog-arrow down"></div>
 						</div>
 						<img src="images/img-blog-2.png" class="img-responsive" alt="Image">
 					</div>
-					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item-blog">
+					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 item-blog">
 						<img src="images/img-blog-3.png" class="img-responsive" alt="Image">
 						<div class="info-item-blog">
-							<h3>Pellentesque habitant morbi tristique senectus</h3>
+							<h3><a href="javascript:void(0)">Pellentesque habitant morbi tristique senectus</a></h3>
 							<p>19th jan 2016</p>
+							<div class="blog-arrow up"></div>
 						</div>
 					</div>
-					<div class="col-xs-3 col-sm-3 col-md-3 col-lg-3 item-blog">
+					<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 item-blog">
 						<div class="info-item-blog">
-							<h3>Pellentesque habitant morbi tristique senectus</h3>
+							<h3><a href="javascript:void(0)">Pellentesque habitant morbi tristique senectus</a></h3>
 							<p>19th jan 2016</p>
+							<div class="blog-arrow down"></div>
 						</div>
 						<img src="images/img-blog-4.png" class="img-responsive" alt="Image">
 					</div>
@@ -267,76 +278,100 @@
 					<h2 class="title-archive">testimonials</h2>
 					<p>Pellentesque habitant morbi tristiquesenectus et netus et malesuada fames ac turpis egestas</p>
 				</div>
-				<div id="myCarousel2" class="carousel slide" data-ride="carousel">
+				<div id="myCarousel-about" class="carousel slide" data-ride="carousel">
 						
 				  	<!-- Wrapper for slides -->
 				  	<div class="carousel-inner">
 					    <div class="item active">
-						    <div class="carousel-caption">
-						        <h3>tenant check</h3>
-						        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-						        <p class="price">only $19.95</p>
-					      	</div>
+					    	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 item-carousel-about">
+					    		<img src="images/img-about.png" class="img-responsive" alt="Image">
+					    	</div>
+					    	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 item-carousel-about">
+					    		<div class="carousel-caption">
+							        <h3>ADAM JOHNSON</h3>
+							        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					      		</div>
+					    	</div>
 					    </div>
 
 					    <div class="item">
-					      	<div class="carousel-caption">
-					        	<h3>tenant check</h3>
-						        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-						        <p class="price">only $19.95</p>
-					      	</div>
+					    	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 item-carousel-about">
+					    		<img src="images/img-about.png" class="img-responsive" alt="Image">
+					    	</div>
+					    	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 item-carousel-about">
+					    		<div class="carousel-caption">
+							        <h3>ADAM JOHNSON</h3>
+							        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					      		</div>
+					    	</div>
 					    </div>
 
 					    <div class="item">
-					      	<div class="carousel-caption">
-					        	<h3>tenant check</h3>
-						        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-						        <p class="price">only $19.95</p>
-					      	</div>
+					    	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 item-carousel-about">
+					    		<img src="images/img-about.png" class="img-responsive" alt="Image">
+					    	</div>
+					    	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 item-carousel-about">
+					    		<div class="carousel-caption">
+							        <h3>ADAM JOHNSON</h3>
+							        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					      		</div>
+					    	</div>
 					    </div>
 
 					    <div class="item">
-					      	<div class="carousel-caption">
-					        	<h3>tenant check</h3>
-						        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-						        <p class="price">only $19.95</p>
-					      	</div>
+					    	<div class="col-xs-12 col-sm-4 col-md-4 col-lg-4 item-carousel-about">
+					    		<img src="images/img-about.png" class="img-responsive" alt="Image">
+					    	</div>
+					    	<div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 item-carousel-about">
+					    		<div class="carousel-caption">
+							        <h3>ADAM JOHNSON</h3>
+							        <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					      		</div>
+					    	</div>
 					    </div>
 				  	</div>
 
 					  <!-- Left and right controls -->
-				  	<a class="left carousel-control" href="#myCarousel2" data-slide="prev">
-					    <span class="glyphicon glyphicon-chevron-left"></span>
+				  	<a class="left myCarousel-about-control" href="#myCarousel-about" data-slide="prev">
+					    <img src="images/icon-prev.png" class="img-responsive" alt="Image">
 					    <span class="sr-only">Previous</span>
 				  	</a>
-				  	<a class="right carousel-control" href="#myCarousel2" data-slide="next">
-				    <span class="glyphicon glyphicon-chevron-right"></span>
+				  	<a class="right myCarousel-about-control" href="#myCarousel-about" data-slide="next">
+				    	<img src="images/icon-next.png" class="img-responsive" alt="Image">
 				    	<span class="sr-only">Next</span>
 				  	</a>
 				</div><!-- end mycarousel-->
 			</div><!-- end about-us-->
+			<div class="clearfix"></div>
 			<div class="footer">
 				<div class="container content">
 					<div class="row">
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-							<p class="phone-number">0404 998744</br>0452 548 744</p>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 footer-social">
+							<h2><strong>just</strong>residential</h2>
+							<ul class="social-icon">
+								<li><a href="javascript:void(0)"><i class="fa fa-facebook"></i></a></li>
+								<li><a href="javascript:void(0)"><i class="fa fa-twitter"></i></a></li>
+								<li><a href="javascript:void(0)"><i class="fa fa-linkedin"></i></a></li>
+								<li><a href="javascript:void(0)"><i class="fa fa-google-plus"></i></a></li>
+							</ul>
+							<div class="clearfix"></div>
+							<p class="copyright">© Copyright Just Residential Property Agents 2016</p>
+						</div>
+						<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 footer-info">
+							<div class="phone-number">
+								<div class="phone">
+									<p>0404 998744</p>
+									<p>0452 548 744<p>
+								</div>	
+							</div>
 							<p class="email">manager@justresidential.com.au</p>
 							<p class="address">P.O. Box 375 Everton Park Qld 4053</p>
 							<ul class="nav-footer">
-								<li>about us</li>
-								<li>carees</li>
-								<li>renting with us</li>
-								<li>FAQ's</li>
-								<li>privacy</li>
-							</ul>
-						</div>
-						<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-							<h2><strong>just</strong>residential</h2>
-							<ul class="social">
-								<li><i class="fa fa-facebook"></i></li>
-								<li><i class="fa fa-twitter"></i></li>
-								<li><i class="fa fa-linkedin"></i></li>
-								<li><i class="fa fa-google-plus"></i></li>
+								<li><a href="javascript:void(0)">about us</a></li>
+								<li><a href="javascript:void(0)">carees</a></li>
+								<li><a href="javascript:void(0)">renting with us</a></li>
+								<li><a href="javascript:void(0)">FAQ's</a></li>
+								<li><a href="javascript:void(0)">privacy</a></li>
 							</ul>
 						</div>
 					</div>
