@@ -84,12 +84,17 @@ h1.site-name{
 	font-weight: bold;
 	font-size: 12px;
 }
-.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li>a:hover{
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li:hover>a{
 	color: #1089ca;
 }
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
 	color: #1089ca;
 	background: transparent;
+}
+.dropdown-menu{
+	padding: 0;
+	margin: 0;
+	border: none;
 }
 .navbar-default .navbar-nav>li:last-child a{
 	padding-right: 0;
@@ -1168,19 +1173,40 @@ span.title-comment{
 	font-size: 14px;
 	color: #ff6600;
 }
-.comment-meta{
+.commentmetadata{
+	position: absolute;
+    top: 0;
+    right: 0;
+}
+.avatar-user{
+	width: 10%;
+	float: left;
+}
+.cmt-text{
+	width: 90%;
+	float: right;
+	min-height: 70px;
+	padding-bottom: 35px;
+	border-bottom: solid 1px #d7d7d7;
+}
+.cmt-text cite, .commentmetadata a, .cmt-text cite a{
+	color: #ff6600;
+}
+.comment-list li.depth-2{
+	width: 90%;
+	float: right;
+    min-height: 70px;
+}
+.comment{
+	clear: both;
+	padding-top: 20px;
+}
+.comment-author,.comment-body{
 	position: relative;
+	overflow: hidden;
 }
-.comment-metadata{
+.reply{
 	position: absolute;
-    top: 50%;
-    color: #ff6600;
-    right: 0;
-    transform: translateY(-50%);
-}
-p.comment-awaiting-moderation{
-	position: absolute;
-    bottom: 0;
-    margin: 0;
-    right: 0;
+	bottom: 10px;
+	right: 5px;
 }

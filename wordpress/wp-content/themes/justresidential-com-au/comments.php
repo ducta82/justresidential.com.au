@@ -78,8 +78,8 @@ if ( post_password_required() ) {
 		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'justresidential-com-au' ); ?></p>
 	<?php
 	endif;
-
-	comment_form();
+	$comments_args  = array('title_reply' => __( 'Your Comment','justresidential-com-au' ) );
+	comment_form($comments_args);
 	?>
 
 </div><!-- #comments -->

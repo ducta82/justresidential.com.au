@@ -122,9 +122,10 @@
 	    	<span class="sr-only">Next</span>
 	  	</a>
 	</div><!-- end mycarousel-->
-<?php endif;?>
+<?php else:?>
 <div class="img-header">
 	<img src="<?php bloginfo( 'template_url' ); ?>/images/careers-header-img.png" class="img-responsive" alt="Image">
 	<h2 class="title-img-header">join the team</h2>
 </div>
-</div><!-- end header-->	
+</div><!-- end header-->
+<?php endif;?>	
