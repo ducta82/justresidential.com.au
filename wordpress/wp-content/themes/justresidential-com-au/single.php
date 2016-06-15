@@ -8,10 +8,14 @@
  */
 
 get_header(); ?>
-
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
+</div><!-- end header-->
+	<div class="blog-page">
+		<div class="container content">
+			<div class="head-page">
+				<h2>Pellentesque habitant morbi tristique</h2>
+				<div class="border-page"></div>	
+			</div>
+			<section class="col-xs-12 col-sm-9 col-md-9 col-lg-9 box-posts-page">
 		<?php
 		while ( have_posts() ) : the_post();
 
@@ -26,10 +30,12 @@ get_header(); ?>
 
 		endwhile; // End of the loop.
 		?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		</section>
 
 <?php
 get_sidebar();
+?>
+		</div><!--end container content-->
+	</div><!--end blog-page-->
+<?php
 get_footer();

@@ -9,9 +9,14 @@
 
 get_header(); ?>
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
+</div><!-- end header-->
+<div class="blog-page">
+	<div class="container content">
+		<div class="head-page">
+			<h2>Pellentesque habitant morbi tristique</h2>
+			<div class="border-page"></div>	
+		</div>
+		<section class="col-xs-12 col-sm-9 col-md-9 col-lg-9 box-posts-page">
 		<?php
 		if ( have_posts() ) : ?>
 
@@ -42,10 +47,12 @@ get_header(); ?>
 			get_template_part( 'template-parts/content', 'none' );
 
 		endif; ?>
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		</section>
 
 <?php
 get_sidebar();
+?>
+		</div><!--end container content-->
+	</div><!--end blog-page-->
+<?php
 get_footer();

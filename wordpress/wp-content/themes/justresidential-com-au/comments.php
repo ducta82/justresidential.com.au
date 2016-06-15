@@ -27,11 +27,8 @@ if ( post_password_required() ) {
 	if ( have_comments() ) : ?>
 		<h2 class="comments-title">
 			<?php
-				printf( // WPCS: XSS OK.
-					esc_html( _nx( 'One thought on &ldquo;%2$s&rdquo;', '%1$s thoughts on &ldquo;%2$s&rdquo;', get_comments_number(), 'comments title', 'justresidential-com-au' ) ),
-					number_format_i18n( get_comments_number() ),
-					'<span>' . get_the_title() . '</span>'
-				);
+
+				echo '<span class="title-comment">'.__('comment','justresidential-com-au').'</span>';
 			?>
 		</h2>
 
@@ -52,6 +49,9 @@ if ( post_password_required() ) {
 				wp_list_comments( array(
 					'style'      => 'ol',
 					'short_ping' => true,
+					'avatar_size'=>70,
+					'type'=>'comment',
+					'callback'=>'mytheme_comment'
 				) );
 			?>
 		</ol><!-- .comment-list -->

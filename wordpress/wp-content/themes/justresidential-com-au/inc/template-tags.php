@@ -25,16 +25,22 @@ function justresidential_com_au_posted_on() {
 	);
 
 	$posted_on = sprintf(
-		esc_html_x( 'Posted on %s', 'post date', 'justresidential-com-au' ),
+		esc_html_x( '%s', 'post date', 'justresidential-com-au' ),
 		'<a href="' . esc_url( get_permalink() ) . '" rel="bookmark">' . $time_string . '</a>'
 	);
 
 	$byline = sprintf(
-		esc_html_x( 'by %s', 'post author', 'justresidential-com-au' ),
-		'<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+		esc_html_x( '%s', 'post author', 'justresidential-com-au' ),
+		'<span class="author"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
 	);
-
-	echo '<span class="posted-on">' . $posted_on . '</span><span class="byline"> ' . $byline . '</span>'; // WPCS: XSS OK.
+	$tags_list = get_the_tag_list( '', esc_html__( ', ', 'justresidential-com-au' ) );
+		if ( $tags_list ) {
+			$tags_post = sprintf(
+			esc_html_x( '%s', 'post author', 'justresidential-com-au' ),
+			'<span class="tags">' . $tags_list . '</span>'
+			);
+		}
+	echo '<div class="vcard"><span class="time">' . $posted_on . '</span>' . $byline . ''.$tags_post.'</div>'; // WPCS: XSS OK.
 
 }
 endif;
@@ -47,16 +53,16 @@ function justresidential_com_au_entry_footer() {
 	// Hide category and tag text for pages.
 	if ( 'post' === get_post_type() ) {
 		/* translators: used between list items, there is a space after the comma */
-		$categories_list = get_the_category_list( esc_html__( ', ', 'justresidential-com-au' ) );
+		/*$categories_list = get_the_category_list( esc_html__( ', ', 'justresidential-com-au' ) );
 		if ( $categories_list && justresidential_com_au_categorized_blog() ) {
-			printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'justresidential-com-au' ) . '</span>', $categories_list ); // WPCS: XSS OK.
-		}
+			printf( '<span class="cat-links">' . esc_html__( 'Posted in %1$s', 'justresidential-com-au' ) . '</span>', $categories_list ); 
+		}*/
 
 		/* translators: used between list items, there is a space after the comma */
-		$tags_list = get_the_tag_list( '', esc_html__( ', ', 'justresidential-com-au' ) );
+		/*$tags_list = get_the_tag_list( '', esc_html__( ', ', 'justresidential-com-au' ) );
 		if ( $tags_list ) {
-			printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'justresidential-com-au' ) . '</span>', $tags_list ); // WPCS: XSS OK.
-		}
+			printf( '<span class="tags-links">' . esc_html__( 'Tagged %1$s', 'justresidential-com-au' ) . '</span>', $tags_list ); 
+		}*/
 	}
 
 	if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
