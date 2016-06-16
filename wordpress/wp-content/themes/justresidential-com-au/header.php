@@ -26,6 +26,7 @@
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/css/reponsive.css" />
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <?php wp_head(); ?>
 </head>
 

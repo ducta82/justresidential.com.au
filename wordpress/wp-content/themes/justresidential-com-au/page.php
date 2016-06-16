@@ -13,7 +13,6 @@
  */
 
 get_header(); ?>
-</div><!-- end header-->
 <div class="page">
 	<div class="container content">
 		<?php

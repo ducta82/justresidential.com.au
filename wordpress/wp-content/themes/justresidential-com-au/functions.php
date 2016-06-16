@@ -221,6 +221,18 @@ function mytheme_comment($comment, $args, $depth) {
     <?php
     }
 /**
+* Custom comment fields 
+*/
+function custom_comment_form_fields($fields){
+	unset($fields['url']);
+    $fields['author'] = '<div class="comment-form-author">' . '<input id="author" placeholder="Your Name" name="author" type="text" value="' .
+				esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /><span class="error">This field is required</span></div>';
+    $fields['email'] = '<div class="comment-form-email">' . '<input id="email" placeholder="Your email" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) .
+				'" size="30"' . $aria_req . ' /><span class="error">A valid email address is required</span></div>';
+    return $fields;
+}
+add_filter('comment_form_default_fields','custom_comment_form_fields');    
+/*
  * Implement the Custom Header feature.
  */
 require get_template_directory() . '/inc/custom-header.php';

@@ -35,4 +35,69 @@ $( document ).ready(function() {
 		});
 		$('.content-page-faq .item-post').toggleClass('special');
 	});
+
+	$('#comment').keyup(function(event) {
+		var input=$(this);
+		var message=$(this).val();
+		console.log(message);
+		if(message){input.removeClass("invalid").addClass("valid");}
+		else{input.removeClass("valid").addClass("invalid");}	
+	});
+
+	$('#author').on('input', function() {
+		var input=$(this);
+		var is_name=input.val();
+		if(is_name){input.removeClass("invalid").addClass("valid");}
+		else{input.removeClass("valid").addClass("invalid");}
+	});
+
+	$('#email').on('input', function() {
+		var input=$(this);
+		var re = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+		var is_email=re.test(input.val());
+		console.log('input.val()'+input.val());
+		if(is_email == true){input.removeClass("invalid").addClass("valid");}
+		else{input.removeClass("valid").addClass("invalid");}
+	});
+	// After Form Submitted Validation
+	$("#commentform").submit(function(event){
+		var form_data=$("#commentform").serializeArray();
+		var error_free=true;
+		var author=$("#author");
+		var email=$("#email");
+		var comment=$("#comment");
+		var valid_author=author.hasClass("valid");
+		var valid_email=email.hasClass("valid");
+		var valid_comment=comment.hasClass("valid");
+		var error_author=$("span", author.parent());
+		var error_email=$("span", email.parent());
+		var error_comment=$("span", comment.parent());
+		if (!valid_author){
+			error_author.removeClass("error").addClass("error_show"); 
+			error_free=false;
+		}else{
+			error_author.removeClass("error_show").addClass("error");
+		}
+		if(!valid_email){
+			error_email.removeClass("error").addClass("error_show")
+			error_free=false;
+		}else{
+			error_email.removeClass("error_show").addClass("error");
+		}
+		if(!valid_comment){
+			error_comment.removeClass("error").addClass("error_show")
+			error_free=false;
+		}else{
+			error_comment.removeClass("error_show").addClass("error");
+		}
+		if (!error_free){
+			event.preventDefault();
+			console.log('error_free_false = '+error_free);
+			return false;
+		}
+		else{
+			console.log('error_free_true = '+error_free);
+			return true;
+		}
+	});
 });

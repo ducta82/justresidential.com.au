@@ -48,7 +48,7 @@ Tags: onego, theme.
 	text-shadow: none;
 }
 #wapper{max-width: 1360px;margin: 0 auto;}
-body.page{padding: 0;}
+article.page,body.page{padding: 0;}
 /*CSS HEADER*/
 .container-fluid, .navbar-collapse{
 	padding: 0;
@@ -718,6 +718,8 @@ a.right.myCarousel-about-control{
 }
 .nav-footer{
 	margin: 0;
+	overflow: hidden;
+    max-height: 45px;
 }
 .nav-footer li{
 	float: left;
@@ -819,6 +821,11 @@ ul.social-icon li a i{
     position: relative;
 }
 .content-page p{margin-bottom: 36px;}
+.wap-content-page img{
+	width: 500px;
+    height: auto;
+    float: right;
+}
 .border-page{border: solid 2.5px #666666;}
 .box-content-page h2, .box-content-page h2 span{
 	font-size: 22px;
@@ -838,9 +845,9 @@ ul.social-icon li a i{
     background: rgba(0,0,0,0.5);
 }
 .head-page{
-	padding: 60px 0;
+	padding:0 0 60px 0;
 }
-.head-page h2{
+.head-page h2, .head-page span{
 	color: #ff6600;
 	font-family: GothamHTF_Bold;
 	font-size: 25px;
@@ -1191,6 +1198,7 @@ span.title-comment{
 }
 .cmt-text cite, .commentmetadata a, .cmt-text cite a{
 	color: #ff6600;
+	font-style: normal;
 }
 .comment-list li.depth-2{
 	width: 90%;
@@ -1209,4 +1217,118 @@ span.title-comment{
 	position: absolute;
 	bottom: 10px;
 	right: 5px;
+}
+.reply a{
+	font-family: GothamHTF_Bold;
+	color: #ff6600;
+}
+ol.comment-list{
+	clear: both;
+    display: block;
+    height: auto;
+    overflow: hidden;
+}
+textarea#comment{
+	width: 100%;
+    resize: none;
+    height: 142px;
+    padding: 10px 15px;
+    border-color: #d7d7d7;
+}
+textarea#comment:focus{
+	border: solid 1px #ff6600;
+	outline: none;
+}
+.comment-form-author{
+	margin-right: 0.5%;
+}
+.comment-form-email{
+	margin-left: 0.5%;
+}
+.comment-form-author, .comment-form-email{
+    width: 49.5%;
+    float: left;
+}
+#author, #email{
+	width: 100%;
+    padding: 8px 15px;
+    border: solid 1px #d7d7d7;
+    outline-offset: 0;
+}
+input#author:focus, input#email:focus{
+	outline: none;
+    outline-offset: 0;
+    border-color: #ff6600;
+}
+p.form-submit #submit, #slae-form-submit{
+	margin-top: 10px;
+	width: 100px;
+    height: 40px;
+    background: #ff6600;
+    border: none;
+    color: #fff;
+    border-radius: 0;
+    text-transform: uppercase;
+    font-family: GothamHTF_Bold;
+}
+.error{
+	display: none;
+}
+.error_show{
+	color: red;
+}
+input.invalid, textarea.invalid{
+	border: 1px solid red !important;
+}
+
+input.valid, textarea.valid{
+	border: 1px solid green !important;
+}
+/*css sale form*/
+.wpcf7 .title-form{
+	font-size: 18px;
+	color: #ff6600;
+	font-family: GothamHTF_Bold;
+    padding-bottom: 10px;
+}
+.wpcf7 p{
+	margin-bottom: 45px;
+}
+.wpcf7 p.lable{
+	width: 25%;
+    float: left;
+    text-align: left;
+    padding-left: 7.7%;
+    position: relative;
+}
+#slae-form-submit{
+	margin-left: 7.7%;
+}
+.sale-input, #sale-form-pre-contact, .tenant-input{
+	width: 29%;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    border-bottom: solid 1px #000;
+    padding-left: 10px;
+}
+.sale-input:focus, #sale-form-pre-contact:focus, .tenant-input:focus{
+	border-color: #ff6600 !important;
+    border-top: none;
+    border-right: none;
+    border-left: none;
+    outline: none;
+}
+.wpcf7 .box-checkbox, .my-resized-recaptcha, .icon-star{
+	margin: 0 0 0 7.7%;
+    position: relative;
+}
+.wpcf7 #sale-form-checkbox span.wpcf7-list-item:first-child, #sale-form-checkbox-legals span.wpcf7-list-item:first-child,  #sale-form-checkbox-legals-2 span.wpcf7-list-item:first-child{
+	margin-left: 0;
+}
+i.fa.fa-star.star-required, i.fa.fa-star{
+	font-size: 6px;
+    color: #ff6600;
+    position: absolute;
+    top: 5px;
 }

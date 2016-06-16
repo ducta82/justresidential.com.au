@@ -10,8 +10,8 @@
 ?>
 <article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 	<div class="box-content-page">
-	<header class="entry-header">
-		<?php echo get_field( "title-page" ); ?>
+		<header class="entry-header">
+			<?php echo get_field( "title-page" ); ?>
 		</header><!-- .entry-header -->
 		<div class="border-page"></div>
 	<?php
@@ -32,8 +32,16 @@
 			) );
 		?>
 		</div>
-		<a class="btn-join"href="javascript:void(0)">join the team</a>
-	</div><!-- .entry-content -->
+		<?php
+			$page = get_post();
+			$ID = $page->ID;
+			$page_array = array('child_of' => $ID, 'post_type '=>'page');
+			$allpage = get_pages( $page_array );
+			foreach ($allpage as $page) {
+				echo '<a class="btn-join"href="'.get_permalink($page->ID).'">'.$page->post_title.'</a>';
+			}
+		?>
+	</div><!-- box-content-page -->
 	<?php
 	if(has_post_thumbnail()){
 		echo '<div class="thumbnail-page">';

@@ -78,7 +78,11 @@ if ( post_password_required() ) {
 		<p class="no-comments"><?php esc_html_e( 'Comments are closed.', 'justresidential-com-au' ); ?></p>
 	<?php
 	endif;
-	$comments_args  = array('title_reply' => __( 'Your Comment','justresidential-com-au' ) );
+	$comments_args  = array(
+		'title_reply' => __( 'Your Comment','justresidential-com-au' ), 
+		'comment_notes_before'=>'', 
+		'label_submit'=>'submit',
+		'comment_field'=>'<p class="comment-form-comment"><label for="comment">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" placeholder="Your comment" cols="45" rows="8" aria-required="true"></textarea><span class="error">This field is required</span></p>' );
 	comment_form($comments_args);
 	?>
 

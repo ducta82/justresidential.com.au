@@ -9,7 +9,7 @@
 
 get_header(); ?>
 </div><!-- end header-->
-	<div class="blog-page">
+	<div class="page">
 		<div class="container content">
 			<div class="head-page">
 				<h2>Pellentesque habitant morbi tristique</h2>

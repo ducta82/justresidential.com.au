@@ -13,19 +13,18 @@ get_header(); ?>
 <div class="blog-page">
 	<div class="container content">
 		<div class="head-page">
-			<h2>Pellentesque habitant morbi tristique</h2>
+			<?php the_archive_description( '<h2>', '</h2>' ); ?>
 			<div class="border-page"></div>	
 		</div>
 		<section class="col-xs-12 col-sm-9 col-md-9 col-lg-9 box-posts-page">
 		<?php
 		if ( have_posts() ) : ?>
-
+<!-- 
 			<header class="page-header">
 				<?php
 					the_archive_title( '<h1 class="page-title">', '</h1>' );
-					the_archive_description( '<div class="taxonomy-description">', '</div>' );
 				?>
-			</header><!-- .page-header -->
+			</header>.page-header -->
 
 			<?php
 			/* Start the Loop */

@@ -86,7 +86,7 @@ get_header(); ?>
 <div class="features">
 	<div class="container content">
 		<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 head-archive">
-			<img src="<?php bloginfo( 'template_url' ); ?>/images/icon-ourservices.png" class="img-responsive" alt="Image">
+			<img src="<?php bloginfo( 'template_url' ); ?>/images/features-icon.png" class="img-responsive" alt="Image">
 			<h2 class="title-archive">features</h2>
 			<p>Pellentesque habitant morbi tristiquesenectus et netus et malesuada fames ac turpis egestas</p>
 		</div>
