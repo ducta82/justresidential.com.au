@@ -826,6 +826,10 @@ ul.social-icon li a i{
     height: auto;
     float: right;
 }
+.wap-content-page .ajax-loader{
+	width: auto;
+	float: none;
+}
 .border-page{border: solid 2.5px #666666;}
 .box-content-page h2, .box-content-page h2 span{
 	font-size: 22px;
