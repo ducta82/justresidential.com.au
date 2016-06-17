@@ -232,6 +232,154 @@ function custom_comment_form_fields($fields){
     return $fields;
 }
 add_filter('comment_form_default_fields','custom_comment_form_fields');    
+
+/**
+* Custom metabox
+*/
+/* 
+Define the custom box */
+add_action( 'add_meta_boxes', 'page_add_custom_box' );
+
+/* Do something with the data entered */
+add_action( 'save_post', 'page_save_postdata' );
+
+/* Adds a box to the main column on the Post and Page edit screens */
+function page_add_custom_box() {
+    add_meta_box( 
+        'page-custom-box',
+        'Page Template',
+        'page_inner_custom_box',
+        'page',
+        'side',
+        'high'
+    );
+}
+
+/* Prints the box content */
+function page_inner_custom_box($page)
+{
+    // Use nonce for verification
+    wp_nonce_field( 'save_field_nonce', 'info_noncename' );
+
+    // Get saved value, if none exists, "default" is selected
+    $saved = get_post_meta( $page->ID, 'page_box_template', true);
+    if( !$saved )
+        $saved = 'default';
+
+    $fields = array(
+        'faq'       => __('FAQ', 'wpse'),
+        'tenantcheck'     => __('Tenant Check', 'wpse'),
+        'contact'     => __('Contact', 'wpse'),
+        'promotion'     => __('Promotion(This page had gmap)', 'wpse'),
+        'default'   => __('Default', 'wpse'),
+    );
+
+    foreach($fields as $key => $label)
+    {
+        printf(
+            '<input type="radio" name="page_box_template" value="%1$s" id="page_box_template[%1$s]" %3$s />'.
+            '<label for="page_box_template[%1$s]"> %2$s ' .
+            '</label><br>',
+            esc_attr($key),
+            esc_html($label),
+            checked($saved, $key, false)
+        );
+    }
+}
+/* When the post is saved, saves our custom data */
+function page_save_postdata( $page_id ) 
+{
+      // verify if this is an auto save routine. 
+      // If it is our form has not been submitted, so we dont want to do anything
+      if ( defined( 'DOING_AUTOSAVE' ) && DOING_AUTOSAVE ) 
+          return;
+
+      // verify this came from the our screen and with proper authorization,
+      // because save_post can be triggered at other times
+      if ( !wp_verify_nonce( $_POST['info_noncename'], 'save_field_nonce' ) )
+          return;
+
+      if ( isset($_POST['page_box_template']) && $_POST['page_box_template'] != "" ){
+            update_post_meta( $page_id, 'page_box_template', $_POST['page_box_template'] );
+      } 
+}
+/**
+*	Get content page 
+*/
+if(!function_exists('get_content_page')){
+	function get_content_page($id){
+		$saved = get_post_meta( $id, 'page_box_template', true);
+		switch ($saved) {
+			case 'faq':
+				
+				$page_array = array('child_of' => $ID, 'post_type '=>'page');
+				$allpage = get_pages( $page_array );
+				foreach ($allpage as $page) {
+					echo '<a class="btn-join"href="'.get_permalink($page->ID).'">'.$page->post_title.'</a>';
+				}
+				break;
+			case'tenantcheck':
+				?>
+					<div class="adv-page">
+						<h3 class="slogan-adv">Check before you rent! <strong>ONLY $19.95</strong> per candidate</h3>
+						<a href="#">click here to begin</a>
+					</div>
+				<?php
+			break;
+			default:
+				# code...
+				break;
+		}
+	}
+}
+/*
+* custom post type
+*/
+function question_custom_post_type()
+{
+ 
+    /*
+     * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
+     */
+    $label = array(
+        'name' => 'Questions', //Tên post type dạng số nhiều
+        'singular_name' => 'Question' //Tên post type dạng số ít
+    );
+ 
+    /*
+     * Biến $args là những tham số quan trọng trong Post Type
+     */
+    $args = array(
+        'labels' => $label, //Gọi các label trong biến $label ở trên
+        'description' => 'Post type đăng câu hỏi', //Mô tả của post type
+        'supports' => array(
+            'title',
+            'editor',
+            'excerpt',
+            'author',
+            'thumbnail'
+        ), //Các tính năng được hỗ trợ trong post type
+        'taxonomies' => array( 'category', 'post_tag' ), //Các taxonomy được phép sử dụng để phân loại nội dung
+        'hierarchical' => false, //Cho phép phân cấp, nếu là false thì post type này giống như Post, false thì giống như Page
+        'public' => true, //Kích hoạt post type
+        'show_ui' => true, //Hiển thị khung quản trị như Post/Page
+        'show_in_menu' => true, //Hiển thị trên Admin Menu (tay trái)
+        'show_in_nav_menus' => true, //Hiển thị trong Appearance -> Menus
+        'show_in_admin_bar' => true, //Hiển thị trên thanh Admin bar màu đen.
+        'menu_position' => 5, //Thứ tự vị trí hiển thị trong menu (tay trái)
+        'menu_icon' => '', //Đường dẫn tới icon sẽ hiển thị
+        'can_export' => true, //Có thể export nội dung bằng Tools -> Export
+        'has_archive' => true, //Cho phép lưu trữ (month, date, year)
+        'exclude_from_search' => false, //Loại bỏ khỏi kết quả tìm kiếm
+        'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
+        'capability_type' => 'post' //
+    );
+ 
+    register_post_type('question', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
+ 
+}
+/* Kích hoạt hàm tạo custom post type */
+add_action('init', 'question_custom_post_type');
 /*
  * Implement the Custom Header feature.
  */

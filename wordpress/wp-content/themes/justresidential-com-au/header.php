@@ -124,9 +124,66 @@
 	  	</a>
 	</div><!-- end mycarousel-->
 <?php else:?>
-<div class="img-header">
-	<img src="<?php bloginfo( 'template_url' ); ?>/images/careers-header-img.png" class="img-responsive" alt="Image">
-	<h2 class="title-img-header">join the team</h2>
-</div>
-</div><!-- end header-->
+	<?php 
+	if(is_page()){ 
+		?>	
+			<div class="img-header">
+				<?php
+
+					if(get_field( "add_images_page" )){
+						echo '<img src="'.get_field( "add_images_page" ).'" class="img-responsive" alt="Image">';
+					}else{
+						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
+					}
+						echo '<h2 class="title-img-header">'.get_the_title().'</h2>';
+				?>
+				
+			</div>
+		<?php
+	}
+	if(is_category()){
+		$cur_cat_id = get_cat_id( single_cat_title("",false) );
+		$imgcat = get_field( "add_image_category" , $cur_cat_id);
+		?>	
+			<div class="img-header">
+				<?php
+
+					if(get_field( "add_image_category" )){
+						echo '<img src="'.$imgcat.'" class="img-responsive" alt="Image">';
+					}else{
+						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
+					}
+					?>
+					<h2 class="title-img-header"><?php single_cat_title();?></h2>
+			</div>
+		<?php
+	}
+	if(is_single()){
+		$categories = get_the_category();
+			if ( ! empty( $categories ) ) {
+		$imgcat = get_field( "add_image_category" , $categories->term_id);
+		?>	
+			<div class="img-header">
+				<?php
+					if(get_field( "add_images_page" )){
+						echo '<img src="'.$imgcat.'" class="img-responsive" alt="Image">';
+					}else{
+						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
+					}
+					if(is_page()){
+						echo '<h2 class="title-img-header">'.get_the_title().'</h2>';       
+					}
+					else{
+						?>
+						<h2 class="title-img-header"><?php echo $categories[0]->name; ?></h2>
+						<?php
+					}
+				?>
+				
+			</div>
+		<?php	
+		}
+	}
+
+?></div><!-- end header-->
 <?php endif;?>	

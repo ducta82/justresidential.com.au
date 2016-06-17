@@ -7,60 +7,243 @@
  * @package justresidential.com.au
  */
 
-?>
-<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-	<div class="box-content-page">
-		<header class="entry-header">
-			<?php echo get_field( "title-page" ); ?>
-		</header><!-- .entry-header -->
-		<div class="border-page"></div>
-	<?php
-		if(has_post_thumbnail()){
-			echo '<div class="entry-content content-page">';
-			}
-		else{
-			echo '<div class="entry-content">';
-		}	
-	?>	
-		<div class="wap-content-page">
+$ID = get_the_id();
+$saved = get_post_meta( $ID, 'page_box_template', true);
+$my_wp_query = new WP_Query();
+$all_wp_pages = $my_wp_query->query(array('post_type' => 'page','orderby'=>'menu_order'));
+$allpage = get_page_children($ID,$all_wp_pages);
+switch ($saved) {
+	case 'faq':
+		
+		$page_array = array('child_of' => $ID, 'post_type '=>'page');
+		$allpage = get_pages( $page_array );
+		?>
+			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<div class="box-content-page">
+					<header class="entry-header">
+						<?php echo get_field( "title-page" ); ?>
+					</header><!-- .entry-header -->
+					<div class="border-page"></div>
 		<?php
-			the_content();
+		$args = array( 'post_type' => 'question', 'posts_per_page' => 10 );
+		$loop = new WP_Query( $args );
+		while ( $loop->have_posts() ) : $loop->the_post();
 
-			wp_link_pages( array(
-				'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'justresidential-com-au' ),
-				'after'  => '</div>',
-			) );
+				echo 	'<div class="entry-content content-page-faq">
+						<div class="wap-content-page faq-content item-post">
+							<header>';
+								?><h3 class="tittle-post"><?php the_title(); ?></h3><?php
+							echo'</header>';
+							?>
+							<div class="content-post">
+								<?php the_content();?>
+							</div>
+						</div>
+					</div>
+		<?php endwhile;/*
+		foreach ($allpage as $page) {
+			$content = $page->post_content;
+			    if ( ! $content ) // Check for empty page
+			        continue;
+			 
+			    $content = apply_filters( 'the_content', $content );
+			echo 	'<div class="entry-content content-page-faq">
+						<div class="wap-content-page faq-content item-post">
+							<header>
+								<h3 class="tittle-post">'.$page->post_title.'</h3>
+							</header>
+							<div class="content-post">
+								'.$content.'
+							</div>
+						</div>
+					</div>';
+		}*/
 		?>
-		</div>
+				</div><!-- box-content-page -->
+			</article><!-- #post-## -->
 		<?php
-			$page = get_post();
-			$ID = $page->ID;
-			$page_array = array('child_of' => $ID, 'post_type '=>'page');
-			$allpage = get_pages( $page_array );
-			foreach ($allpage as $page) {
-				echo '<a class="btn-join"href="'.get_permalink($page->ID).'">'.$page->post_title.'</a>';
-			}
+		break;
+	case'tenantcheck':
 		?>
-	</div><!-- box-content-page -->
-	<?php
-	if(has_post_thumbnail()){
-		echo '<div class="thumbnail-page">';
-		the_post_thumbnail();
-		echo'</div>';
-	} 
-	if ( get_edit_post_link() ) : ?>
-	<footer class="entry-footer">
+			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<div class="box-content-page">
+					<header class="entry-header">
+						<?php echo get_field( "title-page" ); ?>
+					</header><!-- .entry-header -->
+					<div class="border-page"></div>
+				<?php
+					if(has_post_thumbnail()){
+						echo '<div class="entry-content content-page">';
+						}
+					else{
+						echo '<div class="entry-content">';
+					}	
+				?>	
+					<div class="wap-content-page">
+					<?php
+						the_content();
+
+						wp_link_pages( array(
+							'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'justresidential-com-au' ),
+							'after'  => '</div>',
+						) );
+					?>
+					</div>
+				</div><!-- box-content-page -->
+				<?php
+				if(has_post_thumbnail()){
+					echo '<div class="thumbnail-page">';
+					the_post_thumbnail();
+					echo'</div>';
+				} ?>
+				</article><!-- #post-## -->
 		<?php
-			edit_post_link(
-				sprintf(
-					/* translators: %s: Name of current post */
-					esc_html__( 'Edit %s', 'justresidential-com-au' ),
-					the_title( '<span class="screen-reader-text">"', '"</span>', false )
-				),
-				'<span class="edit-link">',
-				'</span>'
-			);
+	break;
+	case'promotion':
 		?>
-	</footer><!-- .entry-footer -->
-	<?php endif; ?>
-</article><!-- #post-## -->
+			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<div class="box-content-page">
+					<header class="entry-header">
+						<?php echo get_field( "title-page" ); ?>
+					</header><!-- .entry-header -->
+					<div class="border-page"></div>
+					<div class="entry-content content-page">
+						<div class="wap-content-page">
+						<?php
+							the_content();
+
+							wp_link_pages( array(
+								'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'justresidential-com-au' ),
+								'after'  => '</div>',
+							) );
+						?>
+						</div>
+						<?php
+						if(get_field( "add_email_address")){
+							$text = get_field( "text_on_button_send_email");
+							$email = get_field( "add_email_address");
+							$text_show = get_field( "text_on_button_send_email") == '' ? $email : $text;
+							echo '<a class="btn-join" href="mailto:'.get_field( "add_email_address").'">'.$text_show.'</a>';
+						}
+						if($allpage[0]){
+							echo '<a class="btn-join" href="'.get_permalink($allpage[0]->ID).' ">'.$allpage[0]->post_title.'</a>';
+						}
+						?>
+					</div><!-- box-content-page -->
+					<div class="thumbnail-page" >
+						<div id="map_canvas" style="height: 303px;"></div>	
+						<?php $map = get_field('add_gmap_in_page'); ?>
+
+						<script type="text/javascript"> 
+
+						  function initialize() {
+						        var myLatlng = new google.maps.LatLng(<?php echo $map['lat']; ?>, <?php echo $map['lng']; ?>);
+						        var myOptions = {
+						          zoom: 13,
+						          center: myLatlng,
+						          mapTypeId: google.maps.MapTypeId.ROADMAP
+						        }
+						        var map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+						      }
+
+						      function loadScript() {
+						        var script = document.createElement("script");
+						        script.type = "text/javascript";
+						        script.src = "http://maps.google.com/maps/api/js?sensor=false&callback=initialize";
+						        document.body.appendChild(script);
+						      }
+
+						      window.onload = loadScript;
+						    </script>
+					</div>
+				</article><!-- #post-## -->
+		<?php
+	break;
+	case'contact':
+		?>
+			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<div class="box-content-page">
+					<header class="entry-header">
+						<?php echo get_field( "title-page" ); ?>
+					</header><!-- .entry-header -->
+					<div class="border-page"></div>
+					<div class="entry-content">
+						<div class="info-contact">
+							<div class="block-contact">
+								<span>front desk</span>
+								<p class="phone">(07) 3162 1622</p>
+								<p class="email">frontdesk@jrpa.com.au</p>
+								<span>Sale</span>
+								<p class="phone">0404 998 744 000</p>
+								<p class="email">sales@jrpa.com.au</p>
+								<span>Property Management</span>
+								<p class="phone">0452 548 744</p>
+								<p class="email">rentals@jrpa.com.au</p>
+								<span>Post</span>
+								<p class="address">M:P.O. Box 375 Everton Park, Qld 4053</p>
+							</div>
+						</div>
+						<div class="form-contact">
+						<?php
+							the_content();
+
+							wp_link_pages( array(
+								'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'justresidential-com-au' ),
+								'after'  => '</div>',
+							) );
+						?>
+						</div>
+				</div><!-- box-content-page -->
+				</article><!-- #post-## -->
+		<?php
+	break;
+	default:
+		?>
+			<article id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+				<div class="box-content-page">
+					<header class="entry-header">
+						<?php echo get_field( "title-page" ); ?>
+					</header><!-- .entry-header -->
+					<div class="border-page"></div>
+				<?php
+					if(has_post_thumbnail()){
+						echo '<div class="entry-content content-page">';
+						}
+					else{
+						echo '<div class="entry-content">';
+					}	
+				?>	
+					<div class="wap-content-page">
+					<?php
+						the_content();
+
+						wp_link_pages( array(
+							'before' => '<div class="page-links">' . esc_html__( 'Pages:', 'justresidential-com-au' ),
+							'after'  => '</div>',
+						) );
+					?>
+					</div>
+					<?php
+						if(get_field( "add_email_address")){
+							$text = get_field( "text_on_button_send_email");
+							$email = get_field( "add_email_address");
+							$text_show = get_field( "text_on_button_send_email") == '' ? $email : $text;
+							echo '<a class="btn-join" href="mailto:'.get_field( "add_email_address").'">'.$text_show.'</a>';
+						}
+						if($allpage[0]){
+							echo '<a class="btn-join" href="'.get_permalink($allpage[0]->ID).' ">'.$allpage[0]->post_title.'</a>';
+						}
+					?>
+					
+				</div><!-- box-content-page -->
+				<?php
+				if(has_post_thumbnail()){
+					echo '<div class="thumbnail-page">';
+					the_post_thumbnail();
+					echo'</div>';
+				} ?>
+			</article><!-- #post-## -->
+			<?php
+		break;
+}
+

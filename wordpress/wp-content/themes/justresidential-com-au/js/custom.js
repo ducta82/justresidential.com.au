@@ -30,8 +30,10 @@ $( document ).ready(function() {
 		}
 	});
 	$('.content-page-faq .tittle-post').click(function(){
-		$('.content-page-faq .content-post').toggle('slow',function(){
-			console.log('ok');
+		var content_post = $(this).parents(".faq-content").find('.content-post');
+		console.log(content_post);
+		content_post.toggle('slow',function(){
+			console.log('toggle');
 		});
 		$('.content-page-faq .item-post').toggleClass('special');
 	});
