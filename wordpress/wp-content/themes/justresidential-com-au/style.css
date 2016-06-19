@@ -31,7 +31,7 @@ Tags: onego, theme.
     }
 }
 
-*{
+body{
 	margin: 0;
 	padding: 0;
 	list-style: none;
@@ -47,8 +47,15 @@ Tags: onego, theme.
  	color: #000;
 	text-shadow: none;
 }
+.entry-content .alignright{
+	float: right;
+    margin: 0.5em 0 0.5em 1em;
+}
 #wapper{max-width: 1360px;margin: 0 auto;}
 article.page,body.page{padding: 0;}
+ul{
+    list-style-image: url('images/icon-list-style.png');
+}
 /*CSS HEADER*/
 .container-fluid, .navbar-collapse{
 	padding: 0;
@@ -85,9 +92,13 @@ h1.site-name{
 	font-weight: bold;
 	font-size: 12px;
 }
-.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li:hover>a{
+.navbar-default .navbar-nav>li>a:focus, .navbar-default .navbar-nav>li:hover>a, .current-menu-item a, .current-menu-parent a {
 	color: #fff;
 	border-bottom: solid 1px #ff6600;
+}
+.dropdown-menu>li>a:focus, .dropdown-menu>li>a:hover, .dropdown-menu .current-menu-item a{
+	border-bottom: solid 1px #ff6600;
+	background: #fff;
 }
 .navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover{
 	color: #ff6600;
@@ -97,6 +108,12 @@ h1.site-name{
 	padding: 0;
 	margin: 0;
 	border: none;
+}
+.dropdown-menu li a{
+	text-transform: uppercase;
+	font-size: 12px;
+	margin: 10px 16px;
+	border-bottom: solid 1px transparent;
 }
 .navbar-default .navbar-nav>li:last-child a{
 	padding-right: 0;
@@ -638,6 +655,7 @@ h2.adv-text strong{
 	right: 0;
 	left: 0;
 	text-align: left;
+	text-shadow:none:;
 }
 #myCarousel-about .carousel-caption h3{
 	font-size: 18px;
@@ -653,6 +671,9 @@ h2.adv-text strong{
 	display: block;
 	background: #1089ca;
 	margin: 16px 0;
+}
+#myCarousel-about .carousel-caption p{
+	color: #333333;
 }
 .item-carousel-about{
 	padding: 0;
@@ -722,6 +743,7 @@ a.right.myCarousel-about-control{
 	margin: 0;
 	overflow: hidden;
     max-height: 45px;
+    list-style: none;
 }
 .nav-footer li{
 	float: left;
@@ -747,6 +769,7 @@ a.right.myCarousel-about-control{
 ul.social-icon{
 	float: right;
 	margin-bottom: 110px;
+	list-style: none;
 }
 ul.social-icon li{
 	float: left;
@@ -815,7 +838,9 @@ ul.social-icon li a i{
 .box-content-page .entry-header{
 	margin-bottom: 8px;
 }
-.content-page, .thumbnail-page{width: 48%;float: left;padding-top: 57px;}
+.thumbnail-page{width: 48%;float: left;padding-top: 57px;}
+.content-page{padding-top: 0;width: 48%;float: left;}
+.entry-content{padding-top: 57px;}
 .box-content-page .content-page-faq{padding-top: 25px;}
 .content-page{
 	margin-right:4%; 
@@ -936,6 +961,7 @@ ul.paging{
     text-align: center;
     margin: 28px auto 50px 37%;
     height: 30px;
+    list-style: none;
 }
 ul.paging li{
 	float: left;
@@ -965,17 +991,24 @@ ul.paging .page-number.active{
 	color: #ff6600;
 	border-bottom: solid 2px;
 }
-.search-box{
+span.screen-reader-text, .search-submit{
+	display: none;
+}
+.search-form{
 	position: relative;
 	margin-bottom: 68px;
 }
-.search-input{
+.search-form label{
+	width: 100%;
+	margin: 0;
+}
+.search-field{
 	width: 100%;
 	height: 38px;
-	border-color: #d7d7d7;
+	border: solid 1px #d7d7d7;
 	background: #ebebeb;
 }
-.search-box:after{
+.search-form:after{
     content: "\f002";
     font-family: FontAwesome;
     font-weight: normal;
@@ -988,30 +1021,33 @@ ul.paging .page-number.active{
     right: 0;
     transform: translateY(-50%);
 }
-.search-input::-webkit-input-placeholder { /* Chrome/Opera/Safari */
+.search-field::-webkit-input-placeholder { /* Chrome/Opera/Safari */
   color: #999999;
 }
-.search-input::-moz-placeholder { /* Firefox 19+ */
+.search-field::-moz-placeholder { /* Firefox 19+ */
   color: #999999;
 }
-.search-input:-ms-input-placeholder { /* IE 10+ */
+.search-field:-ms-input-placeholder { /* IE 10+ */
   color: #999999;
 }
-.search-input:-moz-placeholder { /* Firefox 18- */
+.search-field:-moz-placeholder { /* Firefox 18- */
   color: #999999;
 }
-.archive-month h3{
+.widget_archive h2{
 	font-size: 18px;
 	font-family: GothamHTF_Bold;
 	color: #ff6600;
 }
-.archive-month ul li{
+.widget_archive ul {
+	list-style: none;
+}
+.widget_archive ul li{
     margin-bottom: 10px;
 }
-.archive-month ul li a{
+.widget_archive ul li a{
 	color: #333333;
 }
-.archive-month ul li:before{
+.widget_archive ul li:before{
     content: "";
     width: 8px;
     height: 8px;
@@ -1301,6 +1337,9 @@ span.title-comment{
 .reply a{
 	font-family: GothamHTF_Bold;
 	color: #ff6600;
+}
+#comments ol{
+	list-style: none;
 }
 ol.comment-list{
 	clear: both;

@@ -26,7 +26,7 @@
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/css/reponsive.css" />
-<script src='https://www.google.com/recaptcha/api.js'></script>
+
 <?php wp_head(); ?>
 </head>
 
@@ -184,6 +184,27 @@
 		<?php	
 		}
 	}
-
+	if(is_search()){
+		?>
+			<div class="img-header">
+				<?php
+						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
+						echo '<h2 class="title-img-header">Search</h2>';
+				?>
+				
+			</div>
+		<?php
+	}
+	if(is_404()){
+		?>
+			<div class="img-header">
+				<?php
+						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
+						echo '<h2 class="title-img-header">404</h2>';
+				?>
+				
+			</div>
+		<?php
+	}
 ?></div><!-- end header-->
 <?php endif;?>	

@@ -47,7 +47,7 @@ else {
 				}
 				else
 				{
-				$my_excerpt = get_the_excerpt();
+				$my_excerpt = the_excerpt_max_charlength(277);
 					if ( '' != $my_excerpt ) {
 						echo $my_excerpt; 
 					}

@@ -31,7 +31,7 @@ function justresidential_com_au_posted_on() {
 
 	$byline = sprintf(
 		esc_html_x( '%s', 'post author', 'justresidential-com-au' ),
-		'<span class="author"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>'
+		'<span class="author"><a class="url fn n" href="javascript:void(0);">' . esc_html( get_the_author() ) . '</a></span>'
 	);
 	$tags_list = get_the_tag_list( '', esc_html__( ', ', 'justresidential-com-au' ) );
 		if ( $tags_list ) {
@@ -72,15 +72,6 @@ function justresidential_com_au_entry_footer() {
 		echo '</span>';
 	}
 
-	edit_post_link(
-		sprintf(
-			/* translators: %s: Name of current post */
-			esc_html__( 'Edit %s', 'justresidential-com-au' ),
-			the_title( '<span class="screen-reader-text">"', '"</span>', false )
-		),
-		'<span class="edit-link">',
-		'</span>'
-	);
 }
 endif;
 

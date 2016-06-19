@@ -165,17 +165,9 @@ class My_Walker_Nav_Menu extends Walker_Nav_Menu {
     $output .= "\n$indent<ul class=\"dropdown-menu\">\n";
   }
 }
-/**
- * Change excerpt post.
- */
-function wpdocs_excerpt_more( $more ) {
-    return sprintf( '<a class="read-more" href="%1$s">%2$s</a>',
-        get_permalink( get_the_ID() ),
-        __( 'Read More', 'justresidential-com-au' )
-    );
-}
-add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
-
+/*
+* menu icon
+*/
 
 /**
  * Theme comment
@@ -338,48 +330,226 @@ if(!function_exists('get_content_page')){
 function question_custom_post_type()
 {
  
-    /*
-     * Biến $label để chứa các text liên quan đến tên hiển thị của Post Type trong Admin
-     */
     $label = array(
-        'name' => 'Questions', //Tên post type dạng số nhiều
-        'singular_name' => 'Question' //Tên post type dạng số ít
+        'name' => 'Questions', 
+        'singular_name' => 'Question' 
     );
  
-    /*
-     * Biến $args là những tham số quan trọng trong Post Type
-     */
     $args = array(
-        'labels' => $label, //Gọi các label trong biến $label ở trên
-        'description' => 'Post type đăng câu hỏi', //Mô tả của post type
+        'labels' => $label, 
+        'description' => 'Post type đăng câu hỏi', 
         'supports' => array(
             'title',
             'editor',
             'excerpt',
             'author',
             'thumbnail'
-        ), //Các tính năng được hỗ trợ trong post type
-        'taxonomies' => array( 'category', 'post_tag' ), //Các taxonomy được phép sử dụng để phân loại nội dung
-        'hierarchical' => false, //Cho phép phân cấp, nếu là false thì post type này giống như Post, false thì giống như Page
-        'public' => true, //Kích hoạt post type
-        'show_ui' => true, //Hiển thị khung quản trị như Post/Page
-        'show_in_menu' => true, //Hiển thị trên Admin Menu (tay trái)
-        'show_in_nav_menus' => true, //Hiển thị trong Appearance -> Menus
-        'show_in_admin_bar' => true, //Hiển thị trên thanh Admin bar màu đen.
-        'menu_position' => 5, //Thứ tự vị trí hiển thị trong menu (tay trái)
-        'menu_icon' => '', //Đường dẫn tới icon sẽ hiển thị
-        'can_export' => true, //Có thể export nội dung bằng Tools -> Export
-        'has_archive' => true, //Cho phép lưu trữ (month, date, year)
-        'exclude_from_search' => false, //Loại bỏ khỏi kết quả tìm kiếm
-        'publicly_queryable' => true, //Hiển thị các tham số trong query, phải đặt true
-        'capability_type' => 'post' //
+        ), 
+        'taxonomies' => array( 'category', 'post_tag' ),
+        'hierarchical' => false, 
+        'public' => true, 
+        'show_ui' => true, 
+        'show_in_menu' => true, 
+        'show_in_nav_menus' => true, 
+        'show_in_admin_bar' => true,
+        'menu_position' => 5, 
+        'can_export' => true, 
+        'has_archive' => true, 
+        'exclude_from_search' => false, 
+        'publicly_queryable' => true, 
+        'capability_type' => 'post' ,//
+        'menu_icon'=>'dashicons-format-aside'
     );
  
-    register_post_type('question', $args); //Tạo post type với slug tên là sanpham và các tham số trong biến $args ở trên
+    register_post_type('question', $args);
  
 }
-/* Kích hoạt hàm tạo custom post type */
 add_action('init', 'question_custom_post_type');
+/*
+ *  Duplicate Posts and Pages
+ */
+/*
+ * Function creates post duplicate as a draft and redirects then to the edit post screen
+ */
+function rd_duplicate_post_as_draft(){
+    global $wpdb;
+    if (! ( isset( $_GET['post']) || isset( $_POST['post'])  || ( isset($_REQUEST['action']) && 'rd_duplicate_post_as_draft' == $_REQUEST['action'] ) ) ) {
+        wp_die('No post to duplicate has been supplied!');
+    }
+ 
+    /*
+     * get the original post id
+     */
+    $post_id = (isset($_GET['post']) ? absint( $_GET['post'] ) : absint( $_POST['post'] ) );
+    /*
+     * and all the original post data then
+     */
+    $post = get_post( $post_id );
+ 
+    /*
+     * if you don't want current user to be the new post author,
+     * then change next couple of lines to this: $new_post_author = $post->post_author;
+     */
+    $current_user = wp_get_current_user();
+    $new_post_author = $current_user->ID;
+ 
+    /*
+     * if post data exists, create the post duplicate
+     */
+    if (isset( $post ) && $post != null) {
+ 
+        /*
+         * new post data array
+         */
+        $args = array(
+            'comment_status' => $post->comment_status,
+            'ping_status'    => $post->ping_status,
+            'post_author'    => $new_post_author,
+            'post_content'   => $post->post_content,
+            'post_excerpt'   => $post->post_excerpt,
+            'post_name'      => $post->post_name,
+            'post_parent'    => $post->post_parent,
+            'post_password'  => $post->post_password,
+            'post_status'    => 'draft',
+            'post_title'     => $post->post_title,
+            'post_type'      => $post->post_type,
+            'to_ping'        => $post->to_ping,
+            'menu_order'     => $post->menu_order
+        );
+ 
+        /*
+         * insert the post by wp_insert_post() function
+         */
+        $new_post_id = wp_insert_post( $args );
+ 
+        /*
+         * get all current post terms ad set them to the new post draft
+         */
+        $taxonomies = get_object_taxonomies($post->post_type); // returns array of taxonomy names for post type, ex array("category", "post_tag");
+        foreach ($taxonomies as $taxonomy) {
+            $post_terms = wp_get_object_terms($post_id, $taxonomy, array('fields' => 'slugs'));
+            wp_set_object_terms($new_post_id, $post_terms, $taxonomy, false);
+        }
+ 
+        /*
+         * duplicate all post meta just in two SQL queries
+         */
+        $post_meta_infos = $wpdb->get_results("SELECT meta_key, meta_value FROM $wpdb->postmeta WHERE post_id=$post_id");
+        if (count($post_meta_infos)!=0) {
+            $sql_query = "INSERT INTO $wpdb->postmeta (post_id, meta_key, meta_value) ";
+            foreach ($post_meta_infos as $meta_info) {
+                $meta_key = $meta_info->meta_key;
+                $meta_value = addslashes($meta_info->meta_value);
+                $sql_query_sel[]= "SELECT $new_post_id, '$meta_key', '$meta_value'";
+            }
+            $sql_query.= implode(" UNION ALL ", $sql_query_sel);
+            $wpdb->query($sql_query);
+        }
+ 
+ 
+        /*
+         * finally, redirect to the edit post screen for the new draft
+         */
+        wp_redirect( admin_url( 'post.php?action=edit&post=' . $new_post_id ) );
+        exit;
+    } else {
+        wp_die('Post creation failed, could not find original post: ' . $post_id);
+    }
+}
+add_action( 'admin_action_rd_duplicate_post_as_draft', 'rd_duplicate_post_as_draft' );
+ 
+/*
+ * Add the duplicate link to action list for post_row_actions
+ */
+function rd_duplicate_post_link( $actions, $post ) {
+    if (current_user_can('edit_posts')) {
+        $actions['duplicate'] = '<a href="admin.php?action=rd_duplicate_post_as_draft&amp;post=' . $post->ID . '" title="Duplicate this item" rel="permalink">Duplicate</a>';
+    }
+    return $actions;
+}
+ 
+add_filter( 'post_row_actions', 'rd_duplicate_post_link', 10, 2 );
+
+/*
+* pagination
+*/
+
+
+if ( ! function_exists( 'vtd_paging_nav' ) ) :
+function vtd_paging_nav($custom_query=null) {
+    global $wp_query;
+    $custom_query = $custom_query ? $custom_query : $wp_query;
+    if ( $custom_query->max_num_pages < 2 ){
+        return;}
+    $url = get_category_link($custom_query->queried_object->term_id);
+    $pages = $custom_query->max_num_pages;
+    $current = $custom_query->query_vars['paged'] ? $custom_query->query_vars['paged'] : 1;
+    $max_page_show = 5;
+    $max_current = (($current+2)<$pages) ? ($current+2) : $pages;
+    $min_current = ($current-2)<=0 ? 1 : ($current-2);
+    
+    $max_current = ($max_current<$max_page_show && $max_page_show<=$pages) ? $max_page_show : $max_current;
+    $min_current = ($min_current>($pages-$max_page_show) && ($pages-$max_page_show)>=0) ? ($pages-$max_page_show+1) : $min_current;
+    ob_start();
+    ?>
+        <ul class="paging">
+        <?php if ( $current>1 ) : ?>
+        <li><a class="prev page-numbers" href="<?php echo $url.'page/'.($current-1);?>" data="<?php echo ($current-1); ?>" title="Previous page">back</a></li>
+        <?php endif;?>
+        <?php for($i=$min_current;$i<=$max_current;$i++){
+            $uri = $i==1 ? $url : $url.'page/'.$i;
+            $cls='';
+            if($current==$i){
+                $uri = 'javascript:void(0)';
+                $cls = ' active';
+            }?>
+            <li><a class="page-number<?php echo $cls;?>" href="<?php echo $uri;?>" data="<?php echo $i;?>" title="<?php echo $i;?>"><?php echo $i;?></a></li>
+        <?php }?>
+        <?php if ( $current < $max_current && $current>0 ) : ?>
+        <li><a class="page-numbers next" href="<?php echo $url.'page/'.($current+1);?>" data="<?php echo ($current+1); ?>" title="Next page">next</a></li>
+        <?php endif; ?>
+        </ul>
+    <?php
+    $var = ob_get_contents();
+    ob_end_clean();
+    return $var;
+}
+endif;
+
+/**
+ * Change excerpt post.
+ */
+function wpdocs_excerpt_more( $more ) {
+    return sprintf( '<a class="read-more" href="%1$s">%2$s</a>',
+        get_permalink( get_the_ID() ),
+        __( 'Read More', 'justresidential-com-au' )
+    );
+}
+add_filter( 'excerpt_more', 'wpdocs_excerpt_more' );
+
+
+/**
+* get excerpt
+*/
+function the_excerpt_max_charlength($charlength) {
+    $excerpt = get_the_excerpt();
+    $charlength++;
+
+    if ( mb_strlen( $excerpt ) > $charlength ) {
+        $subex = mb_substr( $excerpt, 0, $charlength - 5 );
+        $exwords = explode( ' ', $subex );
+        $excut = - ( mb_strlen( $exwords[ count( $exwords ) - 1 ] ) );
+        if ( $excut < 0 ) {
+            echo mb_substr( $subex, 0, $excut );
+        } else {
+            echo $subex;
+        }
+        echo '...';
+    } else {
+        echo $excerpt;
+    }
+}
+
 /*
  * Implement the Custom Header feature.
  */
@@ -404,3 +574,8 @@ require get_template_directory() . '/inc/customizer.php';
  * Load Jetpack compatibility file.
  */
 require get_template_directory() . '/inc/jetpack.php';
+
+/**
+ * Load ajax pagination.
+ */
+require get_template_directory() . '/inc/ajax-pagination.php';

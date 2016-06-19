@@ -8,16 +8,18 @@
  */
 
 get_header(); ?>
-
+<div class="page">
+	<div class="container content">
 	<div id="primary" class="content-area">
 		<main id="main" class="site-main" role="main">
 
 			<section class="error-404 not-found">
-				<header class="page-header">
+				<header class="head-page">
 					<h1 class="page-title"><?php esc_html_e( 'Oops! That page can&rsquo;t be found.', 'justresidential-com-au' ); ?></h1>
+					<div class="border-page"></div>	
 				</header><!-- .page-header -->
 
-				<div class="page-content">
+				<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9 box-posts-page page-content">
 					<p><?php esc_html_e( 'It looks like nothing was found at this location. Maybe try one of the links below or a search?', 'justresidential-com-au' ); ?></p>
 
 					<?php
@@ -56,9 +58,11 @@ get_header(); ?>
 
 				</div><!-- .page-content -->
 			</section><!-- .error-404 -->
-
-		</main><!-- #main -->
-	</div><!-- #primary -->
+		<?php
+get_sidebar();
+?>
+		</div><!--end container content-->
+	</div><!--end blog-page-->
 
 <?php
 get_footer();

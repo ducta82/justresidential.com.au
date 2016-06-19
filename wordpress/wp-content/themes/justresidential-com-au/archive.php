@@ -9,23 +9,16 @@
 
 get_header(); ?>
 
-</div><!-- end header-->
-<div class="blog-page">
+<div class="page">
 	<div class="container content">
 		<div class="head-page">
 			<?php the_archive_description( '<h2>', '</h2>' ); ?>
 			<div class="border-page"></div>	
 		</div>
 		<section class="col-xs-12 col-sm-9 col-md-9 col-lg-9 box-posts-page">
+			<div id="list-post">
 		<?php
 		if ( have_posts() ) : ?>
-<!-- 
-			<header class="page-header">
-				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
-				?>
-			</header>.page-header -->
-
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) : the_post();
@@ -37,10 +30,12 @@ get_header(); ?>
 				 */
 				get_template_part( 'template-parts/content', get_post_format() );
 
-			endwhile;
-
-			the_posts_navigation();
-
+			endwhile;?>
+			</div>
+			<div id="box-paging">
+				<?php echo vtd_paging_nav(); ?>
+			</div>
+			<?php
 		else :
 
 			get_template_part( 'template-parts/content', 'none' );

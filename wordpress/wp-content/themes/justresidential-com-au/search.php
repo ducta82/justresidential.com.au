@@ -9,16 +9,17 @@
 
 get_header(); ?>
 
-	<section id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
-
+<div class="page">
+	<div class="container content">
 		<?php
 		if ( have_posts() ) : ?>
 
-			<header class="page-header">
+			<header class="head-page">
 				<h1 class="page-title"><?php printf( esc_html__( 'Search Results for: %s', 'justresidential-com-au' ), '<span>' . get_search_query() . '</span>' ); ?></h1>
+				<div class="border-page"></div>	
 			</header><!-- .page-header -->
-
+			<section class="col-xs-12 col-sm-9 col-md-9 col-lg-9 box-posts-page">
+				<div id="list-post">
 			<?php
 			/* Start the Loop */
 			while ( have_posts() ) : the_post();
@@ -31,18 +32,22 @@ get_header(); ?>
 				get_template_part( 'template-parts/content', 'search' );
 
 			endwhile;
-
-			the_posts_navigation();
+			?>
+			</div>
+			<?php
+			vtd_paging_nav();
 
 		else :
 
 			get_template_part( 'template-parts/content', 'none' );
 
 		endif; ?>
-
-		</main><!-- #main -->
-	</section><!-- #primary -->
-
+		</section>
 <?php
 get_sidebar();
+?>
+
+	</div><!--end container content-->
+</div><!--end blog-page-->	
+<?php
 get_footer();

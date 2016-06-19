@@ -40,25 +40,7 @@ switch ($saved) {
 							</div>
 						</div>
 					</div>
-		<?php endwhile;/*
-		foreach ($allpage as $page) {
-			$content = $page->post_content;
-			    if ( ! $content ) // Check for empty page
-			        continue;
-			 
-			    $content = apply_filters( 'the_content', $content );
-			echo 	'<div class="entry-content content-page-faq">
-						<div class="wap-content-page faq-content item-post">
-							<header>
-								<h3 class="tittle-post">'.$page->post_title.'</h3>
-							</header>
-							<div class="content-post">
-								'.$content.'
-							</div>
-						</div>
-					</div>';
-		}*/
-		?>
+		<?php endwhile ?>
 				</div><!-- box-content-page -->
 			</article><!-- #post-## -->
 		<?php
