@@ -550,6 +550,73 @@ function the_excerpt_max_charlength($charlength) {
     }
 }
 
+/**
+* add images into menu
+*/
+/**
+* add box meta to nav-menu screen
+* box meta upload image and insert to menu with link
+*/
+
+
+add_action('admin_init', 'admin_init_custom');
+function admin_init_custom(){
+    add_meta_box('custom_menu', 'Custom menu', 'your_custom_menu_item', 'nav-menus', 'side', 'low');
+    wp_enqueue_media();
+}
+function your_custom_menu_item (  ) {
+    ?>
+    <p id="menu-item-url-wrap" class="wp-clearfix">
+        <label class="howto" for="custom-menu-item-url-1">URL</label>
+        <input id="custom-menu-item-url-1" name="menu-item[-95][menu-item-url]" type="text" class="code menu-item-textbox" value="http://">
+    </p>
+    <p class="button-controls wp-clearfix">
+        <div id="menu-image-icon"></div>
+        <span class="add-to-menu">
+            <input type="button" class="button-secondary" value="Chọn ảnh" id="btn-choose-img">
+            <span class="spinner"></span>
+        </span>
+    </p>
+    <p class="button-controls wp-clearfix">
+        <span class="add-to-menu">
+            <input type="submit" class="button-secondary submit-add-to-menu right" value="Thêm vào menu" name="add-taxonomy-menu-item" id="submit-choose-menu-image">
+            <span class="spinner"></span>
+        </span>
+    </p>
+    <script type="text/javascript">
+        jQuery('#btn-choose-img').click(function(){
+            var upload = wp.media({
+                title:'Choose Image', //Title for Media Box
+                multiple:false,
+                library: { type: 'image' }
+            }).on('select', function(){
+                var select = upload.state().get('selection');
+                var attach = select.toJSON();
+                console.log(attach);
+                jQuery('#menu-image-icon').html('<img src="'+ attach[0].url +'" style="width:20px;height:20px;">');
+            }).open();
+        });
+        jQuery('#submit-choose-menu-image').click(function(e){
+            e.preventDefault();
+            jQuery.ajax({
+                url: ajaxurl,
+                data: {
+                    action : 'add-menu-item',
+                    menu : jQuery('#nav-menu-meta-object-id').val(),
+                    'menu-settings-column-nonce': jQuery('#menu-settings-column-nonce').val(),
+                    'menu-item[-1][menu-item-type]' : 'custom',
+                    'menu-item[-1][menu-item-url]' : jQuery('#custom-menu-item-url-1').val(),
+                    'menu-item[-1][menu-item-title]' : jQuery('#menu-image-icon').html()
+                },
+                type: 'post',
+                success: function(result){
+                    jQuery('#menu-to-edit').append(result);
+                }
+            });
+            return false;
+        });
+    </script>
+<?php }
 /*
  * Implement the Custom Header feature.
  */
