@@ -28,24 +28,36 @@ get_header(); ?>
 	$ID = get_the_id();
 	$saved = get_post_meta( $ID, 'page_box_template', true);
 	if($saved == 'tenantcheck'){
-
-		if(get_field( "add_email_address")){
-			$text = get_field( "text_on_button_send_email");
-			$email = get_field( "add_email_address");
-			$text_show = get_field( "text_on_button_send_email") == '' ? $email : $text;
+		$text = get_field( "text_on_button_send_email");
+		$email = get_field( "add_email_address");
+		$url = get_field( "url_page_link_button");
+		if($url){
 			?>
-			<div class="adv-page">
+				<div class="adv-page">
 				<div class="container content">
 					<div class="box-content-page">
 						<h3 class="slogan-adv">Check before you rent! <strong>ONLY $19.95</strong> per candidate</h3>
-						<a href="mailto:<?php echo get_field( "add_email_address");?>"><?php echo $text_show;?></a>
+						<a href="<?php echo $url;?>"><?php echo $text;?></a>
 					</div>
 				</div>
 			</div>
-			<?php 
+			<?php
+		}else{
+			if($email){
+				$text_show = get_field( "text_on_button_send_email") == '' ? $email : $text;
+				?>
+				<div class="adv-page">
+					<div class="container content">
+						<div class="box-content-page">
+							<h3 class="slogan-adv">Check before you rent! <strong>ONLY $19.95</strong> per candidate</h3>
+							<a href="mailto:<?php echo get_field( "add_email_address");?>"><?php echo $text_show;?></a>
+						</div>
+					</div>
+				</div>
+				<?php
+				echo '<a class="btn-join" href="mailto:'.get_field( "add_email_address").'">'.$text_show.'</a>';
 			}
-			if($allpage[0]){
-				echo '<a class="btn-join" href="'.get_permalink($allpage[0]->ID).' ">'.$allpage[0]->post_title.'</a>';
-			}} 
+		}
+	} 
 //get_sidebar();
 get_footer();

@@ -1,8 +1,8 @@
 /*
 Theme Name: justresidential.com.au
 Theme URI: http://justresidential.com.au/
-Author: Ducta82@gmail.com
-Author URI: http://underscores.me/
+Author: Onego Company
+Author URI: http://
 Description: Project by Onego Company
 Version: 1.0.0
 Text Domain: justresidential-com-au
@@ -120,6 +120,9 @@ h1.site-name{
 }
 .navbar-default .navbar-nav>li.dropdown a:hover .dropdown-menu{
 	opacity: 1;
+}
+.dropdown.no-images>a:after{
+	display: none !important;
 }
 .dropdown>a:first-child:after{
 	content: '\f105';
@@ -290,6 +293,7 @@ h1.site-name{
 	position: absolute;
     right: 50%;
     transform: translateY(-50%) translateX(50%);
+    max-width: 100px;
 }
 .box-content{
 	text-align: center;
@@ -525,7 +529,7 @@ h2.adv-text strong{
     border: solid 2px #fff;
     display: block;
     text-align: center;
-    line-height: 56px;
+    line-height: 54px;
     margin-top: 50px;
     text-decoration: none;
     text-transform: uppercase;
@@ -663,6 +667,7 @@ h2.adv-text strong{
 	font-family: GothamHTF_Bold;
 	color: #333333;
 	margin: 35px 0 0;
+    text-shadow:none;
 }
 #myCarousel-about .carousel-caption h3:after{
 	content: "";
@@ -674,6 +679,7 @@ h2.adv-text strong{
 }
 #myCarousel-about .carousel-caption p{
 	color: #333333;
+    text-shadow:none;
 }
 .item-carousel-about{
 	padding: 0;
@@ -881,7 +887,7 @@ ul.social-icon li a i{
 .head-page{
 	padding:0 0 60px 0;
 }
-.head-page h2, .head-page span{
+.head-page h2, .head-page span, .head-page p{
 	color: #ff6600;
 	font-family: GothamHTF_Bold;
 	font-size: 25px;
@@ -891,6 +897,7 @@ ul.social-icon li a i{
 .item-post{
     overflow: hidden;
     border-bottom: solid 1px #cccccc;
+    padding: 30px 0;
 }
 .box-posts-page article.item-post:first-child{
 	padding-top: 0;
@@ -925,7 +932,7 @@ header .tittle-post, header .tittle-post a{
 }
 .content-post .read-more{
 	color: #ff6600;
-	text-transform: capitalize;
+	text-transform: none;
 }
 .vcard .time,.vcard .author, .vcard .tags{
     font-size: 12px;
@@ -936,6 +943,10 @@ header .tittle-post, header .tittle-post a{
     margin-right: 8px;
     display: block;
     float: left
+}
+.vcard .time a time, .vcard .author a,.vcard .tags a{
+	color: #333333;
+	text-transform: capitalize;
 }
 .vcard .time:before, .vcard .author:before, .vcard .tags:before{
 	font-family: FontAwesome;
@@ -959,7 +970,7 @@ ul.paging{
     display: block;
     width: auto;
     text-align: center;
-    margin: 28px auto 50px 37%;
+    margin: 28px auto 0 37%;
     height: 30px;
     list-style: none;
 }
@@ -994,6 +1005,9 @@ ul.paging .page-number.active{
 span.screen-reader-text, .search-submit{
 	display: none;
 }
+section.no-results.not-found .search-form{
+	display: none;
+}
 .search-form{
 	position: relative;
 	margin-bottom: 68px;
@@ -1007,6 +1021,7 @@ span.screen-reader-text, .search-submit{
 	height: 38px;
 	border: solid 1px #d7d7d7;
 	background: #ebebeb;
+    padding-left: 15px;
 }
 .search-form:after{
     content: "\f002";
@@ -1037,9 +1052,12 @@ span.screen-reader-text, .search-submit{
 	font-size: 18px;
 	font-family: GothamHTF_Bold;
 	color: #ff6600;
+	margin-bottom: 20px;
+	text-transform: uppercase;
 }
 .widget_archive ul {
 	list-style: none;
+	padding: 0;
 }
 .widget_archive ul li{
     margin-bottom: 10px;
@@ -1084,7 +1102,7 @@ span.screen-reader-text, .search-submit{
     color: #ff6600;
     width: 156px;
     height: 36px;
-    line-height: 36px;
+    line-height: 32px;
     border: solid 2px #ff6600;
     text-align: center;
     text-transform: uppercase;

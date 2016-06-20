@@ -65,64 +65,58 @@
 			</nav><!--end nav menu-->
 		</div><!--end content-->
 <?php if(is_home()):?>
+	<?php
+		$rows = get_field('custom_slide_show','options');
+	?>
+	<?php if( have_rows('custom_slide_show','options') ):?>
+	
 	<div id="myCarousel" class="carousel slide" data-ride="carousel">
+	  <!-- Wrapper for slides -->
 		  <!-- Indicators -->
 	  	<ol class="carousel-indicators">
-		    <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-		    <li data-target="#myCarousel" data-slide-to="1"></li>
-		    <li data-target="#myCarousel" data-slide-to="2"></li>
-		    <li data-target="#myCarousel" data-slide-to="3"></li>
+	  	<?php  $i = 0; while( have_rows('custom_slide_show','options') ): the_row();
+	  	$cls = $i == 0? 'active': '';
+	  	?>
+			
+		    <li data-target="#myCarousel" data-slide-to="<?php echo $i;?>" class="<?php echo $cls; ?>"></li>
+
+	  <?php  $i++; endwhile; ?>
 	  	</ol>
-
-	  <!-- Wrapper for slides -->
 	  	<div class="carousel-inner">
-		    <div class="item active">
-		    	<img src="<?php bloginfo( 'template_url' ); ?>/images/banner-home.png" class="img-responsive" alt="Image">
+	<?php $i=0; while( have_rows('custom_slide_show','options') ): the_row(); 
+		$cls = $i == 0? 'active': '';
+		// vars
+		$image = get_sub_field('image_slideshow');
+		$content = get_sub_field('description_page');
+		$link = get_sub_field('url_on_slideshow');
+		$text_link = get_sub_field('text_link_page');
+		$title_page = get_sub_field('title_page');
+		?>
+		<div class="item <?php echo $cls; ?>">
+		    	<img src="<?php echo $image['url']; ?>" class="img-responsive" alt="<?php echo $image['alt'] ?>">
 			    <div class="carousel-caption">
-			        <h3>tenant check</h3>
-			        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-			        <p class="price"><a href="javascript:void(0)">only $19.95</a></p>
+			        <h3><?php echo $title_page; ?></h3>
+			        <p><?php echo $content; ?></p>
+			        <p class="price"><a href="<?php echo $link; ?>"><?php echo $text_link; ?></a></p>
 		      	</div>
 		    </div>
+		
+	<?php $i++; endwhile; ?>
 
-		    <div class="item">
-		    	<img src="<?php bloginfo( 'template_url' ); ?>/images/banner-home.png" class="img-responsive" alt="Image">
-		      	<div class="carousel-caption">
-		        	<h3>tenant check</h3>
-			        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-			        <p class="price"><a href="javascript:void(0)">only $21.95</a></p>
-		      	</div>
-		    </div>
+		</div>
 
-		    <div class="item">
-		    	<img src="<?php bloginfo( 'template_url' ); ?>/images/banner-home.png" class="img-responsive" alt="Image">
-		      	<div class="carousel-caption">
-		        	<h3>tenant check</h3>
-			        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-			        <p class="price"><a href="javascript:void(0)">only $23.95</a></p>
-		      	</div>
-		    </div>
+	<?php endif; ?>
 
-		    <div class="item">
-		    	<img src="<?php bloginfo( 'template_url' ); ?>/images/banner-home.png" class="img-responsive" alt="Image">
-		      	<div class="carousel-caption">
-		        	<h3>tenant check</h3>
-			        <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-			        <p class="price"><a href="javascript:void(0)">only $25.95</a></p>
-		      	</div>
-		    </div>
-	  	</div>
-
-		  <!-- Left and right controls -->
-	  	<a class="left" href="#myCarousel" data-slide="prev">
-		    <i class="fa fa-angle-left"></i>
-		    <span class="sr-only">Previous</span>
-	  	</a>
-	  	<a class="right" href="#myCarousel" data-slide="next">
-	    <i class="fa fa-angle-right"></i>
-	    	<span class="sr-only">Next</span>
-	  	</a>
-	</div><!-- end mycarousel-->
+			  <!-- Left and right controls -->
+		  	<a class="left" href="#myCarousel" data-slide="prev">
+			    <i class="fa fa-angle-left"></i>
+			    <span class="sr-only">Previous</span>
+		  	</a>
+		  	<a class="right" href="#myCarousel" data-slide="next">
+		    <i class="fa fa-angle-right"></i>
+		    	<span class="sr-only">Next</span>
+		  	</a>
+		</div><!-- end mycarousel-->
 <?php else:?>
 	<?php 
 	if(is_page()){ 
@@ -143,12 +137,12 @@
 	}
 	if(is_category()){
 		$cur_cat_id = get_cat_id( single_cat_title("",false) );
-		$imgcat = get_field( "add_image_category" , $cur_cat_id);
+		$imgcat = get_field( "add_image_category",$cur_cat_id);
 		?>	
 			<div class="img-header">
 				<?php
 
-					if(get_field( "add_image_category" )){
+					if($imgcat){
 						echo '<img src="'.$imgcat.'" class="img-responsive" alt="Image">';
 					}else{
 						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
@@ -201,6 +195,28 @@
 				<?php
 						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
 						echo '<h2 class="title-img-header">404</h2>';
+				?>
+				
+			</div>
+		<?php
+	}
+	if(is_date()){
+		?>
+			<div class="img-header">
+				<?php
+						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
+						echo '<h2 class="title-img-header">ARCHIVES</h2>';
+				?>
+				
+			</div>
+		<?php
+	}
+	if(is_tag()){
+		?>
+			<div class="img-header">
+				<?php
+						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
+						echo '<h2 class="title-img-header">ARCHIVES</h2>';
 				?>
 				
 			</div>

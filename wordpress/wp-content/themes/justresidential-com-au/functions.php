@@ -263,7 +263,7 @@ function page_inner_custom_box($page)
         'tenantcheck'     => __('Tenant Check', 'wpse'),
         'contact'     => __('Contact', 'wpse'),
         'promotion'     => __('Promotion(This page had gmap)', 'wpse'),
-        'default'   => __('Default', 'wpse'),
+        'default'   => __('Default', 'wpse')
     );
 
     foreach($fields as $key => $label)
@@ -331,7 +331,7 @@ function question_custom_post_type()
 {
  
     $label = array(
-        'name' => 'Questions', 
+        'name' => 'FAQ', 
         'singular_name' => 'Question' 
     );
  
@@ -345,7 +345,6 @@ function question_custom_post_type()
             'author',
             'thumbnail'
         ), 
-        'taxonomies' => array( 'category', 'post_tag' ),
         'hierarchical' => false, 
         'public' => true, 
         'show_ui' => true, 

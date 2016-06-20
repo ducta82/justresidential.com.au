@@ -47,9 +47,9 @@ else {
 				}
 				else
 				{
-				$my_excerpt = the_excerpt_max_charlength(277);
+				$my_excerpt = get_the_excerpt();
 					if ( '' != $my_excerpt ) {
-						echo $my_excerpt; 
+						echo mb_strimwidth($my_excerpt, 0, 277, '...').'<a class="read-more" href="'. esc_url( get_permalink() ) .'">Read more</a>';
 					}
 					else{
 					echo '<a href="'.esc_url( get_permalink() ).'">'.__("Read more...","justresidential-com-au").'</a>';

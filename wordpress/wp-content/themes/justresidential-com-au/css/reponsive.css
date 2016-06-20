@@ -97,7 +97,7 @@
 	.nav > li{
 		border-bottom: solid 1px #333;
 	}
-	.navbar-default .navbar-nav > li > a{color: #000;}
+	.navbar-default .navbar-nav > li > a{color: #000 !important;}
 	.primary-nav{
 		position: absolute;
 		border: none;

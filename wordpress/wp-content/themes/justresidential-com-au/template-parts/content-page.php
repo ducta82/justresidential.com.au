@@ -9,9 +9,9 @@
 
 $ID = get_the_id();
 $saved = get_post_meta( $ID, 'page_box_template', true);
-$my_wp_query = new WP_Query();
+/*$my_wp_query = new WP_Query();
 $all_wp_pages = $my_wp_query->query(array('post_type' => 'page','orderby'=>'menu_order'));
-$allpage = get_page_children($ID,$all_wp_pages);
+$allpage = get_page_children($ID,$all_wp_pages);*/
 switch ($saved) {
 	case 'faq':
 		
@@ -101,14 +101,17 @@ switch ($saved) {
 						?>
 						</div>
 						<?php
-						if(get_field( "add_email_address")){
-							$text = get_field( "text_on_button_send_email");
-							$email = get_field( "add_email_address");
-							$text_show = get_field( "text_on_button_send_email") == '' ? $email : $text;
-							echo '<a class="btn-join" href="mailto:'.get_field( "add_email_address").'">'.$text_show.'</a>';
-						}
-						if($allpage[0]){
-							echo '<a class="btn-join" href="'.get_permalink($allpage[0]->ID).' ">'.$allpage[0]->post_title.'</a>';
+						$text = get_field( "text_on_button_send_email");
+						$email = get_field( "add_email_address");
+						$url = get_field( "url_page_link_button");
+						if($url){
+								echo '<a class="btn-join" href="'.$url.' ">'.$text.'</a>';
+							}
+						else{
+							if($email){
+								$text_show = get_field( "text_on_button_send_email") == '' ? $email : $text;
+								echo '<a class="btn-join" href="mailto:'.get_field( "add_email_address").'">'.$text_show.'</a>';
+							}
 						}
 						?>
 					</div><!-- box-content-page -->
@@ -206,15 +209,18 @@ switch ($saved) {
 					?>
 					</div>
 					<?php
-						if(get_field( "add_email_address")){
-							$text = get_field( "text_on_button_send_email");
-							$email = get_field( "add_email_address");
+						$text = get_field( "text_on_button_send_email");
+						$email = get_field( "add_email_address");
+						$url = get_field( "url_page_link_button");
+					if($url){
+							echo '<a class="btn-join" href="'.$url.' ">'.$text.'</a>';
+						}
+					else{
+						if($email){
 							$text_show = get_field( "text_on_button_send_email") == '' ? $email : $text;
 							echo '<a class="btn-join" href="mailto:'.get_field( "add_email_address").'">'.$text_show.'</a>';
 						}
-						if($allpage[0]){
-							echo '<a class="btn-join" href="'.get_permalink($allpage[0]->ID).' ">'.$allpage[0]->post_title.'</a>';
-						}
+					}
 					?>
 					
 				</div><!-- box-content-page -->
