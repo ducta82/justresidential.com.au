@@ -162,26 +162,29 @@ get_header(); ?>
 		$i = 1;
 		foreach ( $myposts as $post ) : setup_postdata( $post ); 
 			$cls = ($i+1)%2 == 0 ? 'up': 'down';
+			$pad = ($i+1)%2 == 0 ? 'bottom' : 'top';
+			$abt = ($i+1)%2 == 0 ? 'bottom' : 'top';
 			$title = get_the_title();
 		?>
 			<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 item-blog">
-			<?php if(($i+1)%2 ==0 ){
-				?>
-					<img src="<?php the_post_thumbnail_url(); ?>" class="img-responsive" alt="Image">
-				<?php
-			}?>
-			
-			<div class="info-item-blog">
-				<h3><a href="<?php the_permalink(); ?>"><?php echo mb_strimwidth($title, 0, 46, '...'); ?></a></h3>
-				<p><?php echo get_the_date();?></p>
-				<div class="blog-arrow <?php echo $cls;?>"></div>
+				<div class="block-item <?php echo $pad;?>">
+							<div class="thumbnail-blog">
+								<a href="<?php the_permalink(); ?>">
+									<span class="thumb" style="background:url('<?php the_post_thumbnail_url();?>')"></span>
+								</a>
+							</div>
+					
+					<div class="info-item-blog <?php echo $abt;?>">
+						<div class="info-tiem">
+							<div class="detail-info">
+								<h3><a href="<?php the_permalink(); ?>"><?php echo mb_strimwidth($title, 0, 46, '...'); ?></a></h3>
+								<p><?php echo get_the_date();?></p>
+							</div>						
+						</div>
+						<div class="blog-arrow <?php echo $cls;?>"></div>
+					</div>
+				</div>
 			</div>
-			<?php if(($i)%2 == 0){
-				?>
-					<img src="<?php the_post_thumbnail_url(); ?>" class="img-responsive" alt="Image">
-				<?php
-			}?>
-		</div>
 	<?php $i++; endforeach; 
 	?>
 		

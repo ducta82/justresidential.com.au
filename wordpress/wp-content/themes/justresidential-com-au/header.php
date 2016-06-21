@@ -22,10 +22,11 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
+<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/css/nivo-slider.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/css/bootstrap.min.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/css/font-awesome.min.css" />
 <link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'stylesheet_url' ); ?>" />
-<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/css/reponsive.css" />
+<link rel="stylesheet" type="text/css" media="all" href="<?php bloginfo( 'template_url' ); ?>/css/reponsive.css?ver=5.0" />
 
 <?php wp_head(); ?>
 </head>
@@ -68,55 +69,30 @@
 	<?php
 		$rows = get_field('custom_slide_show','options');
 	?>
-	<?php if( have_rows('custom_slide_show','options') ):?>
-	
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-	  <!-- Wrapper for slides -->
-		  <!-- Indicators -->
-	  	<ol class="carousel-indicators">
-	  	<?php  $i = 0; while( have_rows('custom_slide_show','options') ): the_row();
-	  	$cls = $i == 0? 'active': '';
-	  	?>
-			
-		    <li data-target="#myCarousel" data-slide-to="<?php echo $i;?>" class="<?php echo $cls; ?>"></li>
-
-	  <?php  $i++; endwhile; ?>
-	  	</ol>
-	  	<div class="carousel-inner">
-	<?php $i=0; while( have_rows('custom_slide_show','options') ): the_row(); 
-		$cls = $i == 0? 'active': '';
-		// vars
+	<?php $i=1; if( have_rows('custom_slide_show','options') ):?>
+	<div class="slider-wrapper">
+		<div id="slider" class="nivoSlider">
+	<?php $i=1; while( have_rows('custom_slide_show','options') ): the_row(); 		// vars
 		$image = get_sub_field('image_slideshow');
+		?>
+		    	<img src="<?php echo $image['url']; ?>" data-thumb="<?php echo $image['url']; ?>" alt="<?php echo $image['alt'] ?>" title="#htmlcaption<?php echo $i;?>">
+				
+	<?php $i++;endwhile; ?>
+	</div><!-- end mycarousel-->
+	<?php $i=1; while( have_rows('custom_slide_show','options') ): the_row(); 	
 		$content = get_sub_field('description_page');
 		$link = get_sub_field('url_on_slideshow');
 		$text_link = get_sub_field('text_link_page');
 		$title_page = get_sub_field('title_page');
 		?>
-		<div class="item <?php echo $cls; ?>">
-		    	<img src="<?php echo $image['url']; ?>" class="img-responsive" alt="<?php echo $image['alt'] ?>">
-			    <div class="carousel-caption">
+		    	<div id="htmlcaption<?php echo $i;?>" class="carousel-caption nivo-html-caption">
 			        <h3><?php echo $title_page; ?></h3>
 			        <p><?php echo $content; ?></p>
 			        <p class="price"><a href="<?php echo $link; ?>"><?php echo $text_link; ?></a></p>
 		      	</div>
-		    </div>
-		
-	<?php $i++; endwhile; ?>
-
-		</div>
-
+	<?php $i++;endwhile; ?>
 	<?php endif; ?>
-
-			  <!-- Left and right controls -->
-		  	<a class="left" href="#myCarousel" data-slide="prev">
-			    <i class="fa fa-angle-left"></i>
-			    <span class="sr-only">Previous</span>
-		  	</a>
-		  	<a class="right" href="#myCarousel" data-slide="next">
-		    <i class="fa fa-angle-right"></i>
-		    	<span class="sr-only">Next</span>
-		  	</a>
-		</div><!-- end mycarousel-->
+	</div>
 <?php else:?>
 	<?php 
 	if(is_page()){ 
@@ -222,5 +198,5 @@
 			</div>
 		<?php
 	}
+endif;		
 ?></div><!-- end header-->
-<?php endif;?>	
