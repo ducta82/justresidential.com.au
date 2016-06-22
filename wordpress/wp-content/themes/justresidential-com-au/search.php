@@ -35,7 +35,7 @@ get_header(); ?>
 			?>
 			</div>
 			<?php
-			vtd_paging_nav();
+			echo vtd_paging_nav();
 
 		else :
 

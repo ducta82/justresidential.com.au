@@ -476,37 +476,35 @@ add_filter( 'post_row_actions', 'rd_duplicate_post_link', 10, 2 );
 
 
 if ( ! function_exists( 'vtd_paging_nav' ) ) :
-function vtd_paging_nav($custom_query=null) {
+function vtd_paging_nav($showitem = 6) {
     global $wp_query;
-    $custom_query = $custom_query ? $custom_query : $wp_query;
-    if ( $custom_query->max_num_pages < 2 ){
+    if ( $wp_query->max_num_pages < 2 ){
         return;}
-    $url = get_category_link($custom_query->queried_object->term_id);
-    $pages = $custom_query->max_num_pages;
-    $current = $custom_query->query_vars['paged'] ? $custom_query->query_vars['paged'] : 1;
-    $max_page_show = 5;
+    $pages = $wp_query->max_num_pages;
+    $current = $wp_query->query_vars['paged'] ? $wp_query->query_vars['paged'] : 1;
+    $showitem = $showitem ? $showitem : 5;
+    $max_page_show = $showitem;
     $max_current = (($current+2)<$pages) ? ($current+2) : $pages;
     $min_current = ($current-2)<=0 ? 1 : ($current-2);
-    
     $max_current = ($max_current<$max_page_show && $max_page_show<=$pages) ? $max_page_show : $max_current;
     $min_current = ($min_current>($pages-$max_page_show) && ($pages-$max_page_show)>=0) ? ($pages-$max_page_show+1) : $min_current;
     ob_start();
     ?>
         <ul class="paging">
-        <?php if ( $current>1 ) : ?>
-        <li><a class="prev page-numbers" href="<?php echo $url.'page/'.($current-1);?>" data="<?php echo ($current-1); ?>" title="Previous page">back</a></li>
+        <?php if ( get_previous_posts_link() ) :?>
+        <li><a class="prev page-numbers" href="<?php echo get_previous_posts_page_link();?>" title="Previous page">back</a></li>
         <?php endif;?>
         <?php for($i=$min_current;$i<=$max_current;$i++){
-            $uri = $i==1 ? $url : $url.'page/'.$i;
+            $uri = $i==1 ? get_pagenum_link(1) : get_pagenum_link($i);
             $cls='';
             if($current==$i){
                 $uri = 'javascript:void(0)';
                 $cls = ' active';
             }?>
-            <li><a class="page-number<?php echo $cls;?>" href="<?php echo $uri;?>" data="<?php echo $i;?>" title="<?php echo $i;?>"><?php echo $i;?></a></li>
+            <li><a class="page-number<?php echo $cls;?>" href="<?php echo $uri;?>" title="<?php echo $i;?>"><?php echo $i;?></a></li>
         <?php }?>
-        <?php if ( $current < $max_current && $current>0 ) : ?>
-        <li><a class="page-numbers next" href="<?php echo $url.'page/'.($current+1);?>" data="<?php echo ($current+1); ?>" title="Next page">next</a></li>
+        <?php if ( get_next_posts_link() ) : ?>
+        <li><a class="page-numbers next" href="<?php echo get_next_posts_page_link();?>" title="Next page">next</a></li>
         <?php endif; ?>
         </ul>
     <?php
@@ -642,7 +640,3 @@ require get_template_directory() . '/inc/customizer.php';
  */
 require get_template_directory() . '/inc/jetpack.php';
 
-/**
- * Load ajax pagination.
- */
-require get_template_directory() . '/inc/ajax-pagination.php';

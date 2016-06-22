@@ -22,13 +22,18 @@ $( document ).ready(function() {
 	});
 	}else{
 		$('.navbar-default .navbar-nav li').click(function(e){
-			$(this).find('>.dropdown-menu').toggle('slow');
+			$(this).find('>.dropdown-menu').toggle('fast');
 		});
 	}
 	
 
 	$('.navbar-toggle').click(function(){
-		$('.primary-nav').toggle('slow');
+		if($('.primary-nav').hasClass('nav-open')){
+			$('.primary-nav').removeClass('nav-open');
+		}
+		else{
+			$('.primary-nav').addClass('nav-open');
+		}
 	});
 	if(screen_width<435){
 		$('.block-item').removeClass('bottom top');
@@ -109,6 +114,7 @@ $( document ).ready(function() {
 	});
 	$('#slider').nivoSlider({
     	effect: 'fade',
+    	pauseTime:3000000,
     	prevText:'<i class="fa fa-angle-left"></i>',
     	nextText:'<i class="fa fa-angle-right"></i>'
     }); 

@@ -22,29 +22,30 @@ get_header(); ?>
 		</div>
 		<div class="row">
 			<?php
-						$page_ids = get_all_page_ids();
-						foreach($page_ids as $page)
-						{
-						if( have_rows('page_in_our_services',$page)){
-							$rows = get_field('page_in_our_services',$page ); // get all the rows
-							$first_row = $rows[0]; 
-							$page_show = $first_row['show_page_in_our_services']; 
-							$image_show = $first_row['image_page_show'];
-							$description_page_show = $first_row['my_description_page_show'];
-								if($page_show){
-									?>
-										<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 item-ourservices">
-												<img src="<?php echo $image_show; ?>" class="img-responsive" alt="Image">
-											<div class="box-content">
-												<h3><?php echo get_the_title($page);?></h3>
-												<p><?php echo $description_page_show;?></p>
-												<a href="<?php echo get_permalink($page);?>">read more</a>
-											</div>	
-										</div>
-									<?php
-								}
-							}
+				$page_ids = get_all_page_ids();
+				foreach($page_ids as $page)
+				{
+				if( have_rows('page_in_our_services',$page)){
+					$rows = get_field('page_in_our_services',$page ); // get all the rows
+					$first_row = $rows[0]; 
+					$page_show = $first_row['show_page_in_our_services']; 
+					$image_show = $first_row['image_page_show'];
+					$description_page_show = $first_row['my_description_page_show'];
+					$title_page = $first_row['title_page_show'] ? $first_row['title_page_show'] : get_the_title($page);
+						if($page_show == 'ourservices'){
+							?>
+								<div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 item-ourservices">
+										<img src="<?php echo $image_show; ?>" class="img-responsive" alt="Image">
+									<div class="box-content">
+										<h3><?php echo $title_page;?></h3>
+										<p><?php echo $description_page_show;?></p>
+										<a href="<?php echo get_permalink($page);?>">read more</a>
+									</div>	
+								</div>
+							<?php
+						}
 					}
+				}
 
 			?>
 		</div><!-- end row-->
@@ -105,22 +106,32 @@ get_header(); ?>
 			<p>Pellentesque habitant morbi tristiquesenectus et netus et malesuada fames ac turpis egestas</p>
 		</div>
 		<div class="box-item-features">
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 item-features">
-				<img src="<?php bloginfo( 'template_url' ); ?>/images/team-icon-1.png" class="img-responsive" alt="Image">
-				<div class="content-item-features">
-					<h3><a href="javascript:void(0)">join us</a></h3>
-					<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-				</div>
-				<div class="hover-item-features"><div class="boder-features"></div></div>
-			</div>
-			<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 item-features">
-				<img src="<?php bloginfo( 'template_url' ); ?>/images/team-icon-2.png" class="img-responsive" alt="Image">
-				<div class="content-item-features">
-					<h3><a href="javascript:void(0)">promotion</a></h3>
-					<p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas</p>
-				</div>
-				<div class="hover-item-features"><div class="boder-features"></div></div>
-			</div>
+			<?php
+				$page_ids = get_all_page_ids();
+				foreach($page_ids as $page)
+				{
+				if( have_rows('page_in_our_services',$page)){
+					$rows = get_field('page_in_our_services',$page ); // get all the rows
+					$first_row = $rows[0]; 
+					$page_show = $first_row['show_page_in_our_services']; 
+					$image_show = $first_row['image_page_show'];
+					$description_page_show = $first_row['my_description_page_show'];
+					$title_page = $first_row['title_page_show'] ? $first_row['title_page_show'] : get_the_title($page);
+						if($page_show == 'features'){
+							?>
+								<div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 item-features">
+									<img src="<?php echo $image_show; ?>" class="img-responsive" alt="Image">
+									<div class="content-item-features">
+										<h3><a href="<?php echo get_permalink($page);?>"><?php echo $title_page;?></a></h3>
+										<p><?php echo $description_page_show;?></p>
+									</div>
+									<div class="hover-item-features"><div class="boder-features"></div></div>
+								</div>
+							<?php
+						}
+					}
+				}
+			?>
 		</div>	<!--end box-item-features-->
 	</div><!--end content-->
 </div><!--end features-->

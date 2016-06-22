@@ -96,15 +96,10 @@
 <?php else:?>
 	<?php 
 	if(is_page()){ 
+			$imgpage = get_field("add_images_page") ? get_field("add_images_page") : get_bloginfo('template_url').'/images/careers-header-img.png';
 		?>	
-			<div class="img-header">
+			<div class="img-header" style="background:url('<?php echo $imgpage;?>') center center no-repeat; background-size:cover;min-height:365px;">
 				<?php
-
-					if(get_field( "add_images_page" )){
-						echo '<img src="'.get_field( "add_images_page" ).'" class="img-responsive" alt="Image">';
-					}else{
-						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
-					}
 						echo '<h2 class="title-img-header">'.get_the_title().'</h2>';
 				?>
 				
@@ -113,33 +108,20 @@
 	}
 	if(is_category()){
 		$cur_cat_id = get_cat_id( single_cat_title("",false) );
-		$imgcat = get_field( "add_image_category",$cur_cat_id);
+		$imgcat = get_field( "add_image_category",$cur_cat_id) ? get_field( "add_image_category",$cur_cat_id) : get_bloginfo('template_url').'/images/careers-header-img.png';
 		?>	
-			<div class="img-header">
-				<?php
-
-					if($imgcat){
-						echo '<img src="'.$imgcat.'" class="img-responsive" alt="Image">';
-					}else{
-						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
-					}
-					?>
-					<h2 class="title-img-header"><?php single_cat_title();?></h2>
+			<div class="img-header" style="background:url('<?php echo $imgcat;?>') center center no-repeat; background-size:cover;min-height:365px;">
+				<h2 class="title-img-header"><?php single_cat_title();?></h2>
 			</div>
 		<?php
 	}
 	if(is_single()){
 		$categories = get_the_category();
 			if ( ! empty( $categories ) ) {
-		$imgcat = get_field( "add_image_category" , $categories->term_id);
+		$imgcat = get_field( "add_image_category" , $categories->term_id) ? get_field( "add_image_category" , $categories->term_id) : get_bloginfo('template_url').'/images/careers-header-img.png';
 		?>	
-			<div class="img-header">
+			<div class="img-header" style="background:url('<?php echo $imgcat;?>') center center no-repeat; background-size:cover;min-height:365px;">
 				<?php
-					if(get_field( "add_images_page" )){
-						echo '<img src="'.$imgcat.'" class="img-responsive" alt="Image">';
-					}else{
-						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
-					}
 					if(is_page()){
 						echo '<h2 class="title-img-header">'.get_the_title().'</h2>';       
 					}
@@ -155,10 +137,10 @@
 		}
 	}
 	if(is_search()){
+		$url = get_bloginfo('template_url').'/images/careers-header-img.png';
 		?>
-			<div class="img-header">
+			<div class="img-header" style="background:url('<?php echo $url;?>') center center no-repeat; background-size:cover;min-height:365px;">
 				<?php
-						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
 						echo '<h2 class="title-img-header">Search</h2>';
 				?>
 				
@@ -166,10 +148,10 @@
 		<?php
 	}
 	if(is_404()){
+		$url = get_bloginfo('template_url').'/images/careers-header-img.png';
 		?>
-			<div class="img-header">
+			<div class="img-header" style="background:url('<?php echo $url;?>') center center no-repeat; background-size:cover;min-height:365px;">
 				<?php
-						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
 						echo '<h2 class="title-img-header">404</h2>';
 				?>
 				
@@ -177,10 +159,10 @@
 		<?php
 	}
 	if(is_date()){
+		$url = get_bloginfo('template_url').'/images/careers-header-img.png';
 		?>
-			<div class="img-header">
+			<div class="img-header" style="background:url('<?php echo $url;?>') center center no-repeat; background-size:cover;min-height:365px;">
 				<?php
-						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
 						echo '<h2 class="title-img-header">ARCHIVES</h2>';
 				?>
 				
@@ -188,10 +170,10 @@
 		<?php
 	}
 	if(is_tag()){
+		$url = get_bloginfo('template_url').'/images/careers-header-img.png';
 		?>
-			<div class="img-header">
+			<div class="img-header" style="background:url('<?php echo $url;?>') center center no-repeat; background-size:cover;min-height:365px;">
 				<?php
-						echo '<img src="'.get_bloginfo('template_url').'/images/careers-header-img.png" class="img-responsive" alt="Image">';
 						echo '<h2 class="title-img-header">ARCHIVES</h2>';
 				?>
 				
