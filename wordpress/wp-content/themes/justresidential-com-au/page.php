@@ -22,6 +22,7 @@ get_header(); ?>
 
 		endwhile; // End of the loop.
 		?>
+		<div class="g-recaptcha" data-sitekey="6LfYviITAAAAADKBHbzdW9c7J1ZdkfhhaNl0RsFA"></div>
 	</div>
 </div>
 <?php

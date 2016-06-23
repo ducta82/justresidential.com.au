@@ -18,8 +18,28 @@ if ( is_single() ) {?>
 			<?php
 		endif; ?>
 	</header>
-	<div class="content-post">
+	<div class="content-post single">
 		<?php the_content( 'Read more ...', $strip_teaser );?>
+	</div>
+	<div class="share-social">
+		<?php 
+			$url = get_permalink();
+			$url_en = urlencode($url);
+			$title = get_the_title();
+			$title_en = str_replace ( ' ', '%20', $title);
+			$tags_list = get_tags();
+			$tags = array();
+			foreach ($tags_list as $tag) {
+				$tags[] = $tag->name;
+			}
+			$tags_en = implode(',',$tags);
+		?>
+		<span><i class="fa fa-share" aria-hidden="true"></i>Share</span>
+		<a href="https://www.facebook.com/sharer/sharer.php?u=<?php echo $url_en;?>&t=<?php echo $title_en;?>" title="Share on Facebook" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+		<a href="https://twitter.com/intent/tweet?source=<?php echo $url_en;?>&text=<?php echo $title_en;?>:<?php echo $url_en;?>&via=<?php echo $tags_en;?>" target="_blank" title="Tweet">
+		<i class="fa fa-twitter" aria-hidden="true"></i></a>
+		<a href="https://plus.google.com/share?url=<?php echo $url_en;?>&t=<?php echo $title_en;?>" target="_blank" title="Share on Google+">
+		<i class="fa fa-google-plus" aria-hidden="true"></i></a>
 	</div>
 	</article>	
 	<footer class="entry-footer">

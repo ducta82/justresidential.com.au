@@ -112,6 +112,14 @@ $( document ).ready(function() {
 			return true;
 		}
 	});
+	$('.item-done-pr h3').counterUp({
+
+		delay: 10, // the delay time in ms
+
+		time: 1000 // the speed time in ms
+
+		});
+
 	$('#slider').nivoSlider({
     	effect: 'fade',
     	pauseTime:3000000,

@@ -16,52 +16,52 @@ if ( ! function_exists( 'justresidential_com_au_setup' ) ) :
  * as indicating support for post thumbnails.
  */
 function justresidential_com_au_setup() {
-	/*
-	 * Make theme available for translation.
-	 * Translations can be filed in the /languages/ directory.
-	 * If you're building a theme based on justresidential.com.au, use a find and replace
-	 * to change 'justresidential-com-au' to the name of your theme in all the template files.
-	 */
-	load_theme_textdomain( 'justresidential-com-au', get_template_directory() . '/languages' );
+    /*
+     * Make theme available for translation.
+     * Translations can be filed in the /languages/ directory.
+     * If you're building a theme based on justresidential.com.au, use a find and replace
+     * to change 'justresidential-com-au' to the name of your theme in all the template files.
+     */
+    load_theme_textdomain( 'justresidential-com-au', get_template_directory() . '/languages' );
 
-	// Add default posts and comments RSS feed links to head.
-	add_theme_support( 'automatic-feed-links' );
+    // Add default posts and comments RSS feed links to head.
+    add_theme_support( 'automatic-feed-links' );
 
-	/*
-	 * Let WordPress manage the document title.
-	 * By adding theme support, we declare that this theme does not use a
-	 * hard-coded <title> tag in the document head, and expect WordPress to
-	 * provide it for us.
-	 */
-	add_theme_support( 'title-tag' );
+    /*
+     * Let WordPress manage the document title.
+     * By adding theme support, we declare that this theme does not use a
+     * hard-coded <title> tag in the document head, and expect WordPress to
+     * provide it for us.
+     */
+    add_theme_support( 'title-tag' );
 
-	/*
-	 * Enable support for Post Thumbnails on posts and pages.
-	 *
-	 * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
-	 */
-	add_theme_support( 'post-thumbnails' );
+    /*
+     * Enable support for Post Thumbnails on posts and pages.
+     *
+     * @link https://developer.wordpress.org/themes/functionality/featured-images-post-thumbnails/
+     */
+    add_theme_support( 'post-thumbnails' );
 
-	// This theme uses wp_nav_menu() in one location.
-	register_nav_menus( array(
-		'primary' => esc_html__( 'Primary', 'justresidential-com-au' ),
-		'footer_menu' => esc_html__( 'Footer Menu', 'justresidential-com-au' )
-	) );
-	/*
-	 * Switch default core markup for search form, comment form, and comments
-	 * to output valid HTML5.
-	 */
-	add_theme_support( 'html5', array(
-		'search-form',
-		'comment-form',
-		'comment-list',
-		'gallery',
-		'caption',
-	) );
-	/*
-	 * add post type
-	 */
-	add_theme_support( 'post-formats',
+    // This theme uses wp_nav_menu() in one location.
+    register_nav_menus( array(
+        'primary' => esc_html__( 'Primary', 'justresidential-com-au' ),
+        'footer_menu' => esc_html__( 'Footer Menu', 'justresidential-com-au' )
+    ) );
+    /*
+     * Switch default core markup for search form, comment form, and comments
+     * to output valid HTML5.
+     */
+    add_theme_support( 'html5', array(
+        'search-form',
+        'comment-form',
+        'comment-list',
+        'gallery',
+        'caption',
+    ) );
+    /*
+     * add post type
+     */
+    add_theme_support( 'post-formats',
     array(
        'image',
        'video',
@@ -69,12 +69,12 @@ function justresidential_com_au_setup() {
        'quote',
        'link'
     )
- 	);
-	// Set up the WordPress core custom background feature.
-	add_theme_support( 'custom-background', apply_filters( 'justresidential_com_au_custom_background_args', array(
-		'default-color' => 'ffffff',
-		'default-image' => '',
-	) ) );
+    );
+    // Set up the WordPress core custom background feature.
+    add_theme_support( 'custom-background', apply_filters( 'justresidential_com_au_custom_background_args', array(
+        'default-color' => 'ffffff',
+        'default-image' => '',
+    ) ) );
 }
 endif;
 add_action( 'after_setup_theme', 'justresidential_com_au_setup' );
@@ -87,7 +87,7 @@ add_action( 'after_setup_theme', 'justresidential_com_au_setup' );
  * @global int $content_width
  */
 function justresidential_com_au_content_width() {
-	$GLOBALS['content_width'] = apply_filters( 'justresidential_com_au_content_width', 640 );
+    $GLOBALS['content_width'] = apply_filters( 'justresidential_com_au_content_width', 640 );
 }
 add_action( 'after_setup_theme', 'justresidential_com_au_content_width', 0 );
 
@@ -97,15 +97,15 @@ add_action( 'after_setup_theme', 'justresidential_com_au_content_width', 0 );
  * @link https://developer.wordpress.org/themes/functionality/sidebars/#registering-a-sidebar
  */
 function justresidential_com_au_widgets_init() {
-	register_sidebar( array(
-		'name'          => esc_html__( 'Sidebar', 'justresidential-com-au' ),
-		'id'            => 'sidebar-1',
-		'description'   => esc_html__( 'Add widgets here.', 'justresidential-com-au' ),
-		'before_widget' => '<section id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</section>',
-		'before_title'  => '<h2 class="widget-title">',
-		'after_title'   => '</h2>',
-	) );
+    register_sidebar( array(
+        'name'          => esc_html__( 'Sidebar', 'justresidential-com-au' ),
+        'id'            => 'sidebar-1',
+        'description'   => esc_html__( 'Add widgets here.', 'justresidential-com-au' ),
+        'before_widget' => '<section id="%1$s" class="widget %2$s">',
+        'after_widget'  => '</section>',
+        'before_title'  => '<h2 class="widget-title">',
+        'after_title'   => '</h2>',
+    ) );
 }
 add_action( 'widgets_init', 'justresidential_com_au_widgets_init' );
 
@@ -113,22 +113,26 @@ add_action( 'widgets_init', 'justresidential_com_au_widgets_init' );
  * Enqueue scripts and styles.
  */
 function justresidential_com_au_scripts() {
-	wp_enqueue_style( 'justresidential-com-au-style', get_stylesheet_uri() );
+    wp_enqueue_style( 'justresidential-com-au-style', get_stylesheet_uri() );
 
-	//wp_enqueue_script( 'justresidential-com-au-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
+    //wp_enqueue_script( 'justresidential-com-au-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '20151215', true );
 
-	wp_enqueue_script( 'justresidential-com-au-jquery-1.12.4', get_template_directory_uri() . '/js/jquery-1.12.4.min.js', array(), '1.12.4', true );
+    wp_enqueue_script( 'justresidential-com-au-jquery-1.12.4', get_template_directory_uri() . '/js/jquery-1.12.4.min.js', array(), '1.12.4', true );
 
-	wp_enqueue_script( 'justresidential-com-au-bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '1.0', true );
+    wp_enqueue_script( 'justresidential-com-au-bootstrap', get_template_directory_uri() . '/js/bootstrap.min.js', array(), '1.0', true );
 
     wp_enqueue_script( 'owl.carousel.min', get_template_directory_uri() . '/js/jquery.nivo.slider.js', array(), '1.0', true );
+
+    wp_enqueue_script( 'jquery.counterup.min', get_template_directory_uri() . '/js/jquery.counterup.min.js', array(), '1.0', true );
+
+    wp_enqueue_script( 'waypoints.min', get_template_directory_uri() . '/js/waypoints.min.js', array(), '1.0', true );
     
     wp_enqueue_script( 'justresidential-com-au-custom', get_template_directory_uri() . '/js/custom.js', array(), '1.0', true );
-	//wp_enqueue_script( 'justresidential-com-au-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
+    //wp_enqueue_script( 'justresidential-com-au-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '20151215', true );
 
-	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
-		wp_enqueue_script( 'comment-reply' );
-	}
+    if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+        wp_enqueue_script( 'comment-reply' );
+    }
 }
 add_action( 'wp_enqueue_scripts', 'justresidential_com_au_scripts' );
 
@@ -187,24 +191,24 @@ function mytheme_comment($comment, $args, $depth) {
         <div id="div-comment-<?php comment_ID() ?>" class="comment-body">
     <?php endif; ?>
     <div class="comment-author vcard">
-    	<div class="avatar-user">
-        	<?php if ( $args['avatar_size'] != 0 ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
-    	</div>
-    	<div class="cmt-text">
-	        <?php printf( __( '<cite class="fn">%s</cite>' ), get_comment_author_link() ); ?>
-	    	<?php comment_text(); ?>
-	    	<div class="reply">
-		        <?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
-		    </div>
-    	</div>
-	    <div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>">
-	        <?php
-	        /* translators: 1: date, 2: time */
-	        printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)' ), '  ', '' );
-	        ?>
-	    </div>
-	 </div>
-	<?php if ( $comment->comment_approved == '0' ) : ?>
+        <div class="avatar-user">
+            <?php if ( $args['avatar_size'] != 0 ) echo get_avatar( $comment, $args['avatar_size'] ); ?>
+        </div>
+        <div class="cmt-text">
+            <?php printf( __( '<cite class="fn">%s</cite>' ), get_comment_author_link() ); ?>
+            <?php comment_text(); ?>
+            <div class="reply">
+                <?php comment_reply_link( array_merge( $args, array( 'add_below' => $add_below, 'depth' => $depth, 'max_depth' => $args['max_depth'] ) ) ); ?>
+            </div>
+        </div>
+        <div class="comment-meta commentmetadata"><a href="<?php echo htmlspecialchars( get_comment_link( $comment->comment_ID ) ); ?>">
+            <?php
+            /* translators: 1: date, 2: time */
+            printf( __('%1$s at %2$s'), get_comment_date(),  get_comment_time() ); ?></a><?php edit_comment_link( __( '(Edit)' ), '  ', '' );
+            ?>
+        </div>
+     </div>
+    <?php if ( $comment->comment_approved == '0' ) : ?>
          <em class="comment-awaiting-moderation"><?php _e( 'Your comment is awaiting moderation.','justresidential-com-au' ); ?></em>
           <br />
     <?php endif; ?>
@@ -217,11 +221,11 @@ function mytheme_comment($comment, $args, $depth) {
 * Custom comment fields 
 */
 function custom_comment_form_fields($fields){
-	unset($fields['url']);
+    unset($fields['url']);
     $fields['author'] = '<div class="comment-form-author">' . '<input id="author" placeholder="Your Name" name="author" type="text" value="' .
-				esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /><span class="error">This field is required</span></div>';
-    $fields['email'] = '<div class="comment-form-email">' . '<input id="email" placeholder="Your email" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) .
-				'" size="30"' . $aria_req . ' /><span class="error">A valid email address is required</span></div>';
+                esc_attr( $commenter['comment_author'] ) . '" size="30"' . $aria_req . ' /><span class="error">This field is required</span></div>';
+    $fields['email'] = '<div class="comment-form-email">' . '<input id="email" placeholder="Your Email" name="email" type="email" value="' . esc_attr(  $commenter['comment_author_email'] ) .
+                '" size="30"' . $aria_req . ' /><span class="error">A valid email address is required</span></div>';
     return $fields;
 }
 add_filter('comment_form_default_fields','custom_comment_form_fields');    
@@ -297,33 +301,33 @@ function page_save_postdata( $page_id )
       } 
 }
 /**
-*	Get content page 
+*   Get content page 
 */
 if(!function_exists('get_content_page')){
-	function get_content_page($id){
-		$saved = get_post_meta( $id, 'page_box_template', true);
-		switch ($saved) {
-			case 'faq':
-				
-				$page_array = array('child_of' => $ID, 'post_type '=>'page');
-				$allpage = get_pages( $page_array );
-				foreach ($allpage as $page) {
-					echo '<a class="btn-join"href="'.get_permalink($page->ID).'">'.$page->post_title.'</a>';
-				}
-				break;
-			case'tenantcheck':
-				?>
-					<div class="adv-page">
-						<h3 class="slogan-adv">Check before you rent! <strong>ONLY $19.95</strong> per candidate</h3>
-						<a href="#">click here to begin</a>
-					</div>
-				<?php
-			break;
-			default:
-				# code...
-				break;
-		}
-	}
+    function get_content_page($id){
+        $saved = get_post_meta( $id, 'page_box_template', true);
+        switch ($saved) {
+            case 'faq':
+                
+                $page_array = array('child_of' => $ID, 'post_type '=>'page');
+                $allpage = get_pages( $page_array );
+                foreach ($allpage as $page) {
+                    echo '<a class="btn-join"href="'.get_permalink($page->ID).'">'.$page->post_title.'</a>';
+                }
+                break;
+            case'tenantcheck':
+                ?>
+                    <div class="adv-page">
+                        <h3 class="slogan-adv">Check before you rent! <strong>ONLY $19.95</strong> per candidate</h3>
+                        <a href="#">click here to begin</a>
+                    </div>
+                <?php
+            break;
+            default:
+                # code...
+                break;
+        }
+    }
 }
 /*
 * custom post type
@@ -513,6 +517,20 @@ function vtd_paging_nav($showitem = 6) {
     return $var;
 }
 endif;
+function workaround_broken_wp_rewrite_rule($query_vars)
+{
+  if (@$query_vars["name"] == "page") {
+    $qv = array();
+    $qv["paged"] = str_replace("/", "", $query_vars["page"]);
+    $qv["category_name"] = $query_vars["category_name"];
+
+    return $qv;
+  }
+
+  return $query_vars;
+}
+
+add_filter('request', 'workaround_broken_wp_rewrite_rule');
 
 /**
  * Change excerpt post.

@@ -541,6 +541,10 @@ h2.adv-text strong{
     text-transform: uppercase;
     font-family: GothamHTF_Bold;
 }
+.adv a:hover{
+	background: #fff;
+	color: #2c5d9a;
+}
 /*css blog*/
 .blog .head-archive{
 	margin: 88px 0 0;
@@ -795,7 +799,7 @@ a.right.myCarousel-about-control{
 }
 .nav-footer li{
 	float: left;
-	margin-right: 40px;
+	margin-right: 28px;
 } 
 .nav-footer li a:hover, .nav-footer li a:focus {
 	color: #ff6600;
@@ -895,6 +899,11 @@ ul.social-icon li a i{
 .wap-content-page{
 	line-height: 1.6;
 
+}
+a.btn-join:hover{
+	color: #fff;
+    background: #ff6600;
+    text-decoration: none;
 }
 .box-content-page .content-page-faq{padding-top: 25px;}
 .content-page{
@@ -1533,6 +1542,24 @@ i.fa.fa-star.star-required, i.fa.fa-star{
     position: absolute;
     top: 5px;
 }
+.content-post.single{
+	padding-bottom: 30px;
+}
+.share-social{
+	height: 30px;
+}
+.share-social i.fa{
+	color: #333333;
+	padding-right: 11px;
+}
+.share-social span{
+    padding: 7px 11px;
+    border: solid 1px #d7d7d7;
+    border-radius: 3px;
+    background: #ebebeb;
+    font-size: 12px;
+    margin-right: 11px;
+}
 @media (min-width: 1360px){
 	.item-features img{width: 100%;}
 	.item-features{width: 50%;padding:0;}
@@ -1545,6 +1572,13 @@ i.fa.fa-star.star-required, i.fa.fa-star{
 	}
 	.navbar-default .navbar-collapse{
 		float: right;
+	}
+	.navbar-right{
+		margin-right: 0;
+	}
+	.navbar-default .navbar-collapse .navbar-nav>li>a{
+		font-size: 12px;
+    	margin: 10px 13px;
 	}
 	.box-posts-page{
 	width: 71.666666% !important;
@@ -1559,6 +1593,7 @@ i.fa.fa-star.star-required, i.fa.fa-star{
 	/* .navbar-default{
 		width: 100%;
 	} */
+	.adv{height: auto;}
 	.content{width: 88.23% !important;}
 	.navbar-default{
 		width: 88.23%;    
@@ -1622,9 +1657,14 @@ i.fa.fa-star.star-required, i.fa.fa-star{
 	    width: 122%;
 	}    
 }
-
+@media (min-width: 1025px){
+	.box-item-features{
+		width: 915px;
+		margin: 0 auto;
+	}
+}
 @media (min-width: 800px){
-	.adv{height: auto;}
+	
 	.about-us{min-height: 642px;}
 	.col-lg-4.item-carousel-about{width: 26.5%;} 
 	.col-lg-8.item-carousel-about{padding: 0 18px;width: 73.5%;}
@@ -1635,9 +1675,6 @@ i.fa.fa-star.star-required, i.fa.fa-star{
 }
 @media (min-width: 769px){
 		.box-posts-page{
-		width: 100%;
-	}
-	.widget-right,.post-thumbnail,.box-content-post{
 		width: 100%;
 	}
 	
